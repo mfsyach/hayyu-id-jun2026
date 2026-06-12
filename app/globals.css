@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Note: --font-contax-sans is injected by next/font/local on <html> (see
+     app/fonts.ts) with an Arial/Helvetica fallback face — do NOT redefine it
+     here or it will clobber the real Contax Sans font. */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-body antialiased;
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  /* Respect users who prefer reduced motion: kill smooth scroll + animations. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* Visible, on-brand focus ring for keyboard users. */
+  :focus-visible {
+    outline: 2px solid #006462;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Small uppercase section eyebrow, matching the live site's label style. */
+  .eyebrow {
+    @apply text-[12px] font-medium uppercase tracking-eyebrow text-primary;
+  }
+
+  /* Heading accent words (the spec's *italic* markers). */
+  .accent {
+    @apply italic font-light text-primary;
+  }
+
+  /* Primary CTA — mirrors the live "Consult Now" / "Reservasi" button. */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-primary px-8 py-3.5
+      text-[14px] font-medium uppercase tracking-[0.18em] text-white
+      transition-all duration-300 hover:bg-primary-500 hover:-translate-y-0.5
+      focus-visible:outline-2;
+  }
+
+  .pillar-card:hover .accent {
+    color: rgb(255 255 255 / 0.95);
+  }
+
+  .hero-bg {
+    background-color: #f7f4ef;
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.7) 100%),
+      url("/images/hero-section-bg.png");
+    background-position: center, 72% top;
+    background-repeat: no-repeat;
+    background-size: cover, auto 46rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-bg {
+      background-position: center, 64% top;
+      background-size: cover, auto 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-bg {
+      background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 58%),
+        url("/images/hero-section-bg.png");
+      background-position: center, center top;
+      background-size: cover, cover;
+    }
+  }
+}
