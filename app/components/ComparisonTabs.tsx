@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 type Side = { title: string; items: string[] };
 
 function DashIcon() {
@@ -29,11 +25,48 @@ function CheckIcon() {
   );
 }
 
-/**
- * Accessible segmented toggle (tablist) for the 4.7 comparison. Switching tabs
- * crossfades the panel; the "Dengan ISST" side is brand-teal, "Tanpa ISST" is
- * neutral. Copy is passed through verbatim. Defaults to the Hayyu side.
- */
+function ComparisonCard({
+  side,
+  variant,
+}: {
+  side: Side;
+  variant: "neutral" | "brand";
+}) {
+  const isBrand = variant === "brand";
+  const title = isBrand ? "Dengan ISST - Hayyu" : side.title;
+
+  return (
+    <article
+      className={`rounded-2xl p-7 sm:p-8 ${
+        isBrand
+          ? "bg-primary text-white shadow-xl shadow-primary/20"
+          : "bg-white ring-1 ring-black/5"
+      }`}
+    >
+      <h3
+        className={`mb-5 border-b pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] ${
+          isBrand ? "border-white/15 text-white/90" : "border-black/10 text-muted"
+      }`}
+    >
+      {title}
+      </h3>
+      <ul className="space-y-3">
+        {side.items.map((item) => (
+          <li
+            key={item}
+            className={`flex gap-3 text-left text-[15px] leading-relaxed ${
+              isBrand ? "text-white/90" : "text-body"
+            }`}
+          >
+            {isBrand ? <CheckIcon /> : <DashIcon />}
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
 export default function ComparisonTabs({
   left,
   right,
@@ -41,80 +74,10 @@ export default function ComparisonTabs({
   left: Side;
   right: Side;
 }) {
-  const [active, setActive] = useState<"left" | "right">("right");
-  const isBrand = active === "right";
-  const current = isBrand ? right : left;
-
-  const tab = (key: "left" | "right", label: string) => {
-    const selected = active === key;
-    return (
-      <button
-        key={key}
-        type="button"
-        role="tab"
-        aria-selected={selected}
-        aria-controls="comparison-panel"
-        onClick={() => setActive(key)}
-        className={`flex-1 rounded-full px-5 py-2.5 text-[14px] font-medium transition-colors duration-300 ${
-          selected
-            ? "bg-primary text-white shadow-sm"
-            : "text-gray-600 hover:text-primary"
-        }`}
-      >
-        {label}
-      </button>
-    );
-  };
-
   return (
-    <div className="mt-10">
-      <div
-        role="tablist"
-        aria-label="Bandingkan dengan dan tanpa ISST"
-        className="mx-auto flex max-w-md gap-1 rounded-full border border-gray-200 bg-surface p-1"
-      >
-        {tab("left", left.title)}
-        {tab("right", right.title)}
-      </div>
-
-      <div
-        id="comparison-panel"
-        role="tabpanel"
-        className="mx-auto mt-7 max-w-2xl"
-      >
-        {/* keyed so the panel remounts + crossfades on switch */}
-        <div
-          key={active}
-          className={`animate-fade-up rounded-2xl p-8 ${
-            isBrand
-              ? "bg-primary text-white shadow-xl shadow-primary/20"
-              : "bg-white ring-1 ring-black/5"
-          }`}
-        >
-          <h3
-            className={`mb-5 border-b pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] ${
-              isBrand
-                ? "border-white/15 text-white/90"
-                : "border-black/10 text-muted"
-            }`}
-          >
-            {current.title}
-          </h3>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {current.items.map((item) => (
-              <li
-                key={item}
-                className={`flex gap-3 text-[15px] ${
-                  isBrand ? "text-white/90" : "text-body"
-                }`}
-              >
-                {isBrand ? <CheckIcon /> : <DashIcon />}
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div className="mx-auto mt-10 grid max-w-5xl gap-5 lg:grid-cols-2">
+      <ComparisonCard side={left} variant="neutral" />
+      <ComparisonCard side={right} variant="brand" />
     </div>
   );
 }

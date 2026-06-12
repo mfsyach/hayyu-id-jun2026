@@ -25,6 +25,8 @@ export const navItems: NavItem[] = [
       { label: "Testimonial", href: `${BASE}/testimonial` },
       { label: "Hayyupedia", href: `${BASE}/hayyupedia` },
       { label: "FAQ", href: `${BASE}/faq` },
+      { label: "ISST", href: "http://localhost:3000/" },
+      { label: "Skin Resolve Programme", href: "http://localhost:3000/skin-resolve-programme" },
     ],
   },
   {
@@ -32,6 +34,7 @@ export const navItems: NavItem[] = [
     href: `${BASE}/treatment`,
     children: [
       { label: "All Treatment", href: `${BASE}/treatment` },
+      { label: "Skin Resolve Programme", href: `${BASE}/skin-resolve-programme` },
       { label: "Peeling", href: `${BASE}/treatment/peeling` },
       { label: "Laser & Light", href: `${BASE}/treatment/laser-light` },
       { label: "Microneedle", href: `${BASE}/treatment/microneedle` },
@@ -60,6 +63,8 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
       { label: "Testimonial", href: `${BASE}/testimonial` },
       { label: "Hayyupedia", href: `${BASE}/hayyupedia` },
       { label: "FAQ", href: `${BASE}/faq` },
+      { label: "ISST", href: "http://localhost:3000/" },
+      { label: "Skin Resolve Programme", href: "http://localhost:3000/skin-resolve-programme" },
     ],
   },
   {
@@ -80,6 +85,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "Clinic Skincare", href: `${BASE}/skincare` },
       { label: "Special Offer", href: `${BASE}/special-offer` },
+      { label: "Skin Resolve Programme", href: `${BASE}/skin-resolve-programme` },
       { label: "HayyuDoc", href: `${BASE}/hayyu-doc` },
       { label: "Partnership", href: `${BASE}/partnership` },
       { label: "News", href: `${BASE}/news` },

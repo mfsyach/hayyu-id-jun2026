@@ -120,7 +120,7 @@ export default function Footer() {
             <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
               Connect with Us
             </h3>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}

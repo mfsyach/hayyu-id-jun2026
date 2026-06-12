@@ -27,6 +27,7 @@ const config: Config = {
         muted: "#6B6B6B", // secondary / caption text (darkened from #7A7A7A)
         surface: "#F4F4F5", // secondary light section bg (hsl 240 5% 96%)
         cream: "#FBFAF8", // warm off-white used between sections
+        gold: "#C4A35A", // warm gold — SRP accent (not in original brand, added for SRP page)
       },
       fontFamily: {
         // Self-hosted Contax Sans (next/font/local) with the live site's

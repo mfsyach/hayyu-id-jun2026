@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ImagePlaceholder from "./components/ImagePlaceholder";
@@ -354,40 +355,47 @@ export default function Page() {
         </section>
 
         {/* ============================================ 4.4 SRP INTEGRATION === */}
-        <section id="srp" className="relative scroll-mt-28 overflow-hidden bg-primary py-20 text-white lg:py-24">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(135deg, #fff 0 1px, transparent 1px 26px)",
-            }}
-            aria-hidden="true"
-          />
-          <Reveal className="relative mx-auto max-w-content px-5 lg:px-8 xl:px-0">
-            <p className="mb-3 text-[12px] font-medium uppercase tracking-eyebrow text-white/90">
-              Pilar 02 — Implementasi Nyata
-            </p>
-            <h2 className="max-w-3xl font-light leading-tight tracking-tight text-white text-[clamp(1.9rem,3.5vw,2.9rem)]">
-              Smart Combo Treatment Diwujudkan Melalui{" "}
-              <span className="italic font-light text-white/95 underline decoration-white/30 decoration-1 underline-offset-[6px]">
-                Skin Resolve Programme
-              </span>
-            </h2>
+        <section
+          id="srp"
+          className="relative scroll-mt-28 overflow-hidden bg-primary bg-cover bg-center bg-no-repeat pb-24 text-white lg:pb-36"
+          style={{ backgroundImage: "url('/images/srp-section-bg.png')" }}
+        >
+          <Reveal>
+            <div className="hidden">
+              <div>
+                <p className="mb-3 text-[12px] font-medium uppercase tracking-eyebrow text-white/90">
+                  Pilar 02 — Implementasi Nyata
+                </p>
+                <h2 className="max-w-4xl font-light leading-tight tracking-tight text-white text-[clamp(1.9rem,3.5vw,2.9rem)]">
+                  Smart Combo Treatment Diwujudkan Melalui{" "}
+                  <span className="italic font-light text-white/95 underline decoration-white/35 decoration-1 underline-offset-[6px]">
+                    Skin Resolve Programme
+                  </span>
+                </h2>
 
-            <div className="mt-7 grid max-w-4xl gap-5 text-[16px] leading-relaxed text-white/90 md:grid-cols-2">
-              <p>
-                Konsep &quot;Smart Combo Treatment&quot; dalam ISST bukan hanya
-                filosofi — ia diwujudkan secara konkret melalui Skin Resolve
-                Programme (SRP), sistem tata laksana eksklusif yang dikembangkan tim
-                Research &amp; Development Hayyu.
-              </p>
-              <p>
-                Dalam SRP, dokter tidak memilihkan treatment berdasarkan menu atau
-                tren. Setelah analisis kulit dengan QuantifiCare dan anamnesa lengkap,
-                dokter memasukkan diagnosa ke dalam sistem — dan program kombinasi
-                treatment yang paling tepat muncul secara otomatis, disesuaikan dengan
-                kondisi unik kulit setiap pasien.
-              </p>
+                <div className="mt-7 max-w-4xl space-y-5 text-[16px] leading-relaxed text-white/90">
+                  <p>
+                    Konsep &quot;Smart Combo Treatment&quot; dalam ISST bukan hanya
+                    filosofi — ia diwujudkan secara konkret melalui Skin Resolve
+                    Programme (SRP), sistem tata laksana eksklusif yang dikembangkan tim
+                    Research &amp; Development Hayyu.
+                  </p>
+                  <p>
+                    Dalam SRP, dokter tidak memilihkan treatment berdasarkan menu atau
+                    tren. Setelah analisis kulit dengan QuantifiCare dan anamnesa lengkap,
+                    dokter memasukkan diagnosa ke dalam sistem — dan program kombinasi
+                    treatment yang paling tepat muncul secara otomatis, disesuaikan dengan
+                    kondisi unik kulit setiap pasien.
+                  </p>
+                </div>
+              </div>
+
+              <ImagePlaceholder
+                ratio="aspect-[4/5]"
+                className="mx-auto w-full max-w-sm rounded-[1.25rem] ring-white/10 lg:mt-10"
+                alt="Dokter Hayyu menjelaskan rencana perawatan personal melalui tablet saat konsultasi"
+                filename="hero-konsultasi-kulit.png"
+              />
             </div>
 
             <SrpJourney stages={srpStages} steps={srpFlow} />
@@ -395,13 +403,17 @@ export default function Page() {
         </section>
 
         {/* ================================================ 4.5 QUANTIFICARE === */}
-        <section id="quantificare" className="scroll-mt-28 px-5 py-20 lg:py-24">
-          <Reveal className="mx-auto grid max-w-content items-start gap-12 lg:grid-cols-2 lg:px-8 xl:px-0">
+        <section
+          id="quantificare"
+          className="relative scroll-mt-28 overflow-hidden bg-white bg-cover bg-center bg-no-repeat pb-20 pt-28 lg:pb-32 lg:pt-40"
+          style={{ backgroundImage: "url('/images/quantificare-section-bg.png')" }}
+        >
+          <Reveal className="mx-auto grid max-w-content items-start gap-12 px-5 lg:grid-cols-2 lg:px-8 xl:px-0">
             <div>
               <Eyebrow>Pilar 04 — Teknologi Pengukuran</Eyebrow>
               <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-                QuantifiCare LifeViz —{" "}
-                <span className="accent">Imaging 3D dari Prancis</span>
+                QuantifiCare LifeViz
+                <span className="accent mt-1 block">Imaging 3D dari Prancis</span>
               </h2>
               <p className="mt-6 text-body">
                 Hayyu menggunakan QuantifiCare LifeViz, sistem imaging kulit 3D yang
@@ -415,40 +427,34 @@ export default function Page() {
                 paling tepat. Hasil treatment juga bisa dibandingkan secara objektif
                 dari kunjungan ke kunjungan.
               </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {qcStats.map((s) => (
+                  <div
+                    key={s.value}
+                    className="rounded-xl bg-primary px-5 py-6 text-center text-white"
+                  >
+                    <p className="font-light text-[34px] leading-none">
+                      <StatCounter value={s.value} />
+                    </p>
+                    <p className="mt-3 text-[12px] leading-snug text-white/84">
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="lg:pl-6">
               <ImagePlaceholder
-                ratio="aspect-[4/3]"
+                ratio="aspect-[6/5]"
                 alt="Perangkat QuantifiCare LifeViz dan visualisasi hasil pemindaian kulit wajah 3D di layar"
                 filename="quantificare-lifeviz-3d.png"
               />
             </div>
           </Reveal>
 
-          <Reveal className="mx-auto max-w-content lg:px-8 xl:px-0">
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {qcStats.map((s) => (
-              <div
-                key={s.value}
-                className="rounded-2xl bg-primary px-6 py-8 text-center text-white"
-              >
-                <p className="font-light text-[40px] leading-none">
-                  <StatCounter value={s.value} />
-                </p>
-                <p className="mt-3 text-[13px] leading-snug text-white/90">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <QuantificareExplorer parameters={qcParameters} />
-
-          <p className="mx-auto mt-10 max-w-prose text-center text-body">
-            Parameter yang bisa dianalisis QuantifiCare meliputi kerutan dan garis
-            halus, pori-pori, pigmentasi dan flek (termasuk yang belum terlihat di
-            permukaan), kadar minyak, tekstur kulit, serta perubahan volume dan
-            elastisitas wajah secara 3D.
-          </p>
+          <Reveal className="mx-auto max-w-content px-5 lg:px-8 xl:px-0">
+            <QuantificareExplorer parameters={qcParameters} />
           </Reveal>
         </section>
 
@@ -491,78 +497,85 @@ export default function Page() {
 
         {/* ================================================ 4.7 COMPARISON === */}
         <section id="perbandingan" className="mx-auto max-w-content scroll-mt-28 px-5 py-20 lg:px-8 xl:px-0 lg:py-24">
-          <Eyebrow>Perbedaan yang Dirasakan</Eyebrow>
-          <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-            Dengan vs Tanpa <span className="accent">ISST</span>
-          </h2>
+          <div className="mx-auto max-w-3xl text-center">
+            <Eyebrow>Perbedaan yang Dirasakan</Eyebrow>
+            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+              Dengan vs Tanpa <span className="accent">ISST</span>
+            </h2>
+          </div>
 
           <ComparisonTabs
             left={{ title: "Tanpa ISST", items: comparisonLeft }}
             right={{ title: "Dengan ISST â€” Hayyu", items: comparisonRight }}
           />
 
-          <div className="sr-only">
-            {/* Tanpa ISST */}
-            <div className="rounded-2xl bg-white p-8 ring-1 ring-black/5">
-              <h3 className="mb-5 border-b border-black/10 pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-muted">
-                Tanpa ISST
-              </h3>
-              <ul className="space-y-3">
-                {comparisonLeft.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] text-body">
-                    <span className="mt-2 h-px w-3 shrink-0 bg-muted/50" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+          <div className="hidden">
             {/* Dengan ISST — emphasized teal */}
             <div className="rounded-2xl bg-primary p-8 text-white shadow-xl shadow-primary/20">
               <h3 className="mb-5 border-b border-white/15 pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-white/90">
                 Dengan ISST — Hayyu
               </h3>
-              <ul className="space-y-3">
-                {comparisonRight.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] text-white/90">
-                    <svg
-                      className="mt-0.5 h-4 w-4 shrink-0 text-white"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M4 10.5 8 14.5 16 5.5"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
 
         {/* ================================================ 4.8 PULL QUOTE === */}
-        <section className="bg-primary-800 py-16 lg:py-20">
-          <figure className="relative mx-auto max-w-prose px-6 lg:px-8">
-            <span
-              className="pointer-events-none absolute -left-2 -top-10 select-none font-serif text-[120px] leading-none text-white/10"
-              aria-hidden="true"
-            >
-              &ldquo;
-            </span>
-            <blockquote className="relative text-[clamp(1.25rem,2.6vw,1.7rem)] font-light italic leading-relaxed text-white/90">
-              ISST bukan tentang teknologi yang canggih demi kecanggihan itu sendiri.
-              Ini tentang memastikan setiap wanita yang datang ke Hayyu mendapatkan
-              perawatan yang benar-benar tepat untuk kondisi unik kulitnya — terukur,
-              aman, dan tanpa menyalahi fitrahnya.
-            </blockquote>
-          </figure>
+        <section className="relative overflow-hidden bg-[#006462] text-white">
+          {/* Brand wave decorations */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+          >
+            {/* Flowing ribbon — top-left */}
+            <Image
+              src="/images/quote-wave-corner.png"
+              alt=""
+              width={1040}
+              height={920}
+              className="absolute -top-px left-0 w-[230px] sm:w-[300px] lg:w-[440px]"
+            />
+            {/* Rolling humps + diagonal — bottom */}
+            <Image
+              src="/images/quote-wave-humps.png"
+              alt=""
+              width={2250}
+              height={578}
+              className="absolute -bottom-px left-0 w-full lg:w-[120%] lg:left-auto lg:-right-[6%]"
+            />
+            {/* Soft halo behind the portrait */}
+            <div className="absolute bottom-0 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/[0.045] blur-3xl lg:left-[26%] lg:h-[520px] lg:w-[520px]" />
+          </div>
+
+          <div className="relative z-10 mx-auto flex min-h-[560px] max-w-content flex-col px-5 pt-16 sm:px-8 lg:grid lg:min-h-[560px] lg:grid-cols-[0.86fr_1.14fr] lg:items-end lg:gap-6 lg:px-8 lg:pt-0 xl:px-0">
+            {/* PORTRAIT */}
+            <div className="order-2 mt-10 flex w-full justify-center self-end lg:order-1 lg:mt-0 lg:justify-end">
+              <div className="relative h-[340px] w-[238px] sm:h-[390px] sm:w-[274px] lg:h-[516px] lg:w-[352px]">
+                <Image
+                  src="/images/hayyu-quote-portrait.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 352px, 274px"
+                  className="object-contain object-bottom"
+                />
+              </div>
+            </div>
+
+            {/* QUOTE */}
+            <figure className="order-1 self-center lg:order-2 lg:py-16 lg:pl-2">
+              <span
+                aria-hidden="true"
+                className="block select-none font-serif text-[92px] leading-[0.55] text-white/30 sm:text-[112px] lg:text-[132px]"
+              >
+                &ldquo;
+              </span>
+              <blockquote className="mt-5 max-w-[680px] text-[clamp(1.2rem,4.6vw,1.38rem)] font-light italic leading-[1.7] text-white/95 lg:mt-6 lg:text-[clamp(1.45rem,2.05vw,1.9rem)] lg:leading-[1.6]">
+                ISST bukan tentang teknologi yang canggih demi kecanggihan itu
+                sendiri. Ini tentang memastikan setiap wanita yang datang ke Hayyu
+                mendapatkan perawatan yang benar-benar tepat untuk kondisi unik
+                kulitnya — terukur, aman, dan tanpa menyalahi fitrahnya.
+              </blockquote>
+            </figure>
+          </div>
         </section>
 
         {/* ======================================================= 4.9 CTA === */}

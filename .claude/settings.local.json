@@ -8,7 +8,9 @@
       "Bash(grep -oE '\\\\.\\(bg|text|border\\)-\\(primary|secondary|accent\\)\\(-[0-9]{2,3}\\)?\\(\\\\\\\\?\\)?\\\\{[^}]*\\\\}')",
       "Bash(grep -oE '\\\\-\\\\-\\(primary|secondary|accent|background|foreground|muted|border|card|popover|ring\\)\\(-[0-9]{2,3}\\)?:[^;]+')",
       "Bash(node -e \"const d=require\\('./.firecrawl/hayyu-shot.json'\\); const s=d.screenshot||d.data&&d.data.screenshot||d.url; console.log\\(typeof s, \\(s||''\\).slice\\(0,120\\)\\);\")",
-      "Bash(grep -oE 'href=\\\\\\\\\"\\(https://hayyu.id\\)?/\\(about|treatment|skincare|special-offer|hayyu-doc|partnership|news|contact|founder|doctor|testimonial|hayyupedia|faq|our-location|career|reservasi\\)[^\\\\\\\\\"]*\\\\\\\\\"' .firecrawl/hayyu-home.json)"
+      "Bash(grep -oE 'href=\\\\\\\\\"\\(https://hayyu.id\\)?/\\(about|treatment|skincare|special-offer|hayyu-doc|partnership|news|contact|founder|doctor|testimonial|hayyupedia|faq|our-location|career|reservasi\\)[^\\\\\\\\\"]*\\\\\\\\\"' .firecrawl/hayyu-home.json)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)"
     ]
   }
 }
