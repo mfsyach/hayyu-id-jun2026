@@ -5,6 +5,7 @@ import Reveal from "../components/Reveal";
 import StatCounter from "../components/StatCounter";
 import StickyConsultCta from "../components/StickyConsultCta";
 import FaqAccordion from "./FaqAccordion";
+import { externalProjectLinkProps } from "../components/siteData";
 
 /* ------------------------------------------------------------------ meta -- */
 
@@ -44,6 +45,8 @@ const jsonLd = {
     name: "Hayyu Skin Clinic Research and Development Department",
   },
 };
+
+const RESERVATION_URL = "https://hayyu.id/reservasi";
 
 const heroStats = [
   { value: "3", label: "Stage program terstruktur" },
@@ -189,7 +192,7 @@ const effectivenessCards = [
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <p
-      className={`mb-3 text-[12px] font-medium uppercase tracking-eyebrow ${
+      className={`mb-3 text-[14px] font-medium uppercase tracking-eyebrow ${
         light ? "text-white/80" : "text-primary"
       }`}
     >
@@ -210,7 +213,7 @@ export default function Page() {
 
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-[16px] focus:text-white"
       >
         Lewati ke konten utama
       </a>
@@ -222,7 +225,7 @@ export default function Page() {
         <section className="hero-bg relative overflow-hidden pb-24 pt-40 lg:pb-32 lg:pt-52">
           {/* Faint "SRP" watermark */}
           <span
-            className="pointer-events-none absolute bottom-0 right-0 select-none font-light leading-none text-primary/[0.07] text-[clamp(10rem,28vw,20rem)]"
+            className="pointer-events-none absolute bottom-0 right-0 select-none font-light leading-none text-primary/[0.07] text-[clamp(160px,28vw,320px)]"
             aria-hidden="true"
           >
             SRP
@@ -230,11 +233,11 @@ export default function Page() {
           <div className="relative mx-auto max-w-content px-5 lg:px-8 xl:px-0">
             <div className="animate-fade-up max-w-3xl">
               <Eyebrow>Sistem Perawatan Kulit Eksklusif Hayyu</Eyebrow>
-              <h1 className="font-light leading-[1.08] tracking-tight text-ink text-[clamp(2.6rem,6vw,4.6rem)]">
+              <h1 className="font-light leading-[1.08] tracking-tight text-ink text-[clamp(42px,6vw,74px)]">
                 Skin Resolve{" "}
                 <span className="italic font-light text-primary">Programme</span>
               </h1>
-              <p className="mt-7 max-w-2xl text-[16px] leading-relaxed text-body">
+              <p className="mt-7 max-w-2xl text-[18px] leading-relaxed text-body">
                 Bukan sekadar pilihan treatment. SRP adalah program tata laksana
                 kulit yang terstruktur, personal, dan berbasis diagnosa — dirancang
                 untuk menyelesaikan masalah kulitmu secara sistematis dari akar.
@@ -250,10 +253,10 @@ export default function Page() {
                   key={stat.label}
                   className="rounded-xl border border-primary/10 bg-white/80 px-5 py-6 text-center shadow-[0_18px_42px_rgba(0,100,98,0.09)] backdrop-blur-sm"
                 >
-                  <p className="font-light leading-none text-primary text-[clamp(2rem,4vw,2.6rem)]">
+                  <p className="font-light leading-none text-primary text-[clamp(32px,4vw,42px)]">
                     <StatCounter value={stat.value} />
                   </p>
-                  <p className="mt-3 text-[12px] leading-snug text-body">
+                  <p className="mt-3 text-[14px] leading-snug text-body">
                     {stat.label}
                   </p>
                 </div>
@@ -269,12 +272,12 @@ export default function Page() {
         >
           <Reveal className="mx-auto max-w-prose lg:px-0">
             <Eyebrow>Apa itu Skin Resolve Programme?</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(30px,calc(3vw_+_5px),46px)]">
               Program Perawatan Kulit yang{" "}
               <span className="accent">Punya Arah</span>
             </h2>
 
-            <div className="mt-6 space-y-5 text-[16px] leading-relaxed text-body">
+            <div className="mt-6 space-y-5 text-[18px] leading-relaxed text-body">
               <p>
                 Banyak orang pergi ke klinik kecantikan berkali-kali tapi tidak tahu
                 apakah kulitnya benar-benar membaik. Treatment dilakukan, tapi tidak
@@ -299,7 +302,7 @@ export default function Page() {
             {/* Highlight box */}
             <div className="mt-10 rounded-r-xl border-l-[3px] border-gold bg-primary-50/60 px-7 py-6">
               <p className="eyebrow mb-3">Perbedaan Mendasar</p>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[18px] leading-relaxed text-body">
                 Di klinik lain, kamu memilih treatment dari menu. Di Hayyu dengan SRP,
                 dokter membangun program untukmu — berdasarkan kondisi aktual kulitmu,
                 bukan berdasarkan treatment yang sedang populer.
@@ -328,7 +331,7 @@ export default function Page() {
 
           <Reveal className="relative mx-auto max-w-content px-5 lg:px-8 xl:px-0">
             <Eyebrow light>Customer Journey</Eyebrow>
-            <h2 className="max-w-3xl font-light leading-tight tracking-tight text-white text-[clamp(1.9rem,3.5vw,2.9rem)]">
+            <h2 className="max-w-3xl font-light leading-tight tracking-tight text-white text-[clamp(30px,calc(3vw_+_5px),46px)]">
               Dari Datang hingga{" "}
               <span className="italic font-light text-gold">
                 Pulang — Semua Terstruktur
@@ -340,18 +343,18 @@ export default function Page() {
                 <Reveal key={step.num} delay={index * 60}>
                   <article className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-6 transition-colors hover:bg-white/[0.1]">
                     <div className="flex items-center gap-3">
-                      <span className="font-light leading-none text-white/40 text-[22px]">
+                      <span className="font-light leading-none text-white/40 text-[24px]">
                         {step.num}
                       </span>
-                      <span className="text-[22px]" aria-hidden="true">
+                      <span className="text-[24px]" aria-hidden="true">
                         {step.icon}
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-[14px] font-medium leading-snug text-white">
+                      <h3 className="text-[16px] font-medium leading-snug text-white">
                         {step.title}
                       </h3>
-                      <p className="mt-2 text-[13px] leading-snug text-white/70">
+                      <p className="mt-2 text-[15px] leading-snug text-white/70">
                         {step.desc}
                       </p>
                     </div>
@@ -370,11 +373,11 @@ export default function Page() {
           <div className="mx-auto max-w-content lg:px-8 xl:px-0">
             <Reveal>
               <Eyebrow>3 Stage Program</Eyebrow>
-              <h2 className="max-w-3xl font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+              <h2 className="max-w-3xl font-light leading-tight tracking-tight text-ink text-[clamp(30px,calc(3vw_+_5px),46px)]">
                 Perawatan yang Punya{" "}
                 <span className="accent">Urutan dan Tujuan</span>
               </h2>
-              <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-body">
+              <p className="mt-5 max-w-2xl text-[18px] leading-relaxed text-body">
                 SRP tidak dimulai dari semua masalah sekaligus. Dokter menentukan
                 stage yang paling tepat berdasarkan kondisi kulit aktual — memastikan
                 setiap sesi treatment memiliki fokus yang jelas.
@@ -391,15 +394,15 @@ export default function Page() {
                       <span className="font-light leading-none text-ink/15 text-[48px]">
                         {stage.num}
                       </span>
-                      <span className="rounded-full border border-primary/20 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
+                      <span className="rounded-full border border-primary/20 px-3 py-1 text-[13px] font-medium uppercase tracking-[0.14em] text-primary">
                         {stage.badge}
                       </span>
                     </div>
-                    <h3 className="mt-5 text-[clamp(1.2rem,2vw,1.4rem)] font-normal leading-snug text-ink">
+                    <h3 className="mt-5 text-[clamp(21px,2vw,24px)] font-normal leading-snug text-ink">
                       {stage.title}{" "}
                       <span className="accent">{stage.accentWord}</span>
                     </h3>
-                    <p className="mt-4 flex-1 text-[15px] leading-relaxed text-body">
+                    <p className="mt-4 flex-1 text-[17px] leading-relaxed text-body">
                       {stage.body}
                     </p>
                   </article>
@@ -416,7 +419,7 @@ export default function Page() {
         >
           <Reveal className="mx-auto max-w-prose lg:px-0">
             <Eyebrow>Detail Proses Konsultasi</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(30px,calc(3vw_+_5px),46px)]">
               Yang Terjadi Saat Kamu{" "}
               <span className="accent">Duduk dengan Dokter Hayyu</span>
             </h2>
@@ -440,13 +443,13 @@ export default function Page() {
                     <span className="h-1.5 w-1.5 rounded-full bg-white" />
                   </span>
 
-                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
+                  <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-gold">
                     {step.eyebrow}
                   </p>
-                  <h3 className="mt-1.5 text-[clamp(1.1rem,2vw,1.35rem)] font-normal leading-snug text-ink">
+                  <h3 className="mt-1.5 text-[clamp(20px,2vw,24px)] font-normal leading-snug text-ink">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-body">
+                  <p className="mt-3 text-[17px] leading-relaxed text-body">
                     {step.desc}
                   </p>
                 </li>
@@ -463,12 +466,12 @@ export default function Page() {
           <div className="mx-auto max-w-content lg:px-8 xl:px-0">
             <Reveal className="max-w-prose">
               <Eyebrow>Efektivitas Sistem</Eyebrow>
-              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(30px,calc(3vw_+_5px),46px)]">
                 Sistem yang Komprehensif,{" "}
                 <span className="accent">Hasil yang Nyata</span>
               </h2>
 
-              <div className="mt-6 space-y-5 text-[16px] leading-relaxed text-body">
+              <div className="mt-6 space-y-5 text-[18px] leading-relaxed text-body">
                 <p>
                   SRP bukan hanya soal proses yang lebih teratur. Sistem yang mendalam
                   dan komprehensif ini berdampak langsung pada efektivitas hasil
@@ -499,10 +502,10 @@ export default function Page() {
                     <span className="font-light leading-none text-ink/15 text-[36px]">
                       {card.num}
                     </span>
-                    <h3 className="mt-4 text-[clamp(1.1rem,2vw,1.3rem)] font-normal leading-snug text-ink">
+                    <h3 className="mt-4 text-[clamp(20px,2vw,23px)] font-normal leading-snug text-ink">
                       {card.title}
                     </h3>
-                    <p className="mt-3 flex-1 text-[15px] leading-relaxed text-body">
+                    <p className="mt-3 flex-1 text-[17px] leading-relaxed text-body">
                       {card.body}
                     </p>
                   </article>
@@ -522,7 +525,7 @@ export default function Page() {
               >
                 &ldquo;
               </span>
-              <blockquote className="relative text-[clamp(1.2rem,2.4vw,1.65rem)] font-light italic leading-relaxed text-white/90">
+              <blockquote className="relative text-[clamp(21px,2vw,28px)] font-light italic leading-relaxed text-white/90">
                 SRP bukan tentang menjual treatment sebanyak-banyaknya. SRP adalah
                 tentang memastikan setiap treatment yang kamu jalani punya alasan yang
                 jelas, tujuan yang terukur, dan hasil yang bisa kamu lihat sendiri.
@@ -538,7 +541,7 @@ export default function Page() {
         >
           <Reveal className="mx-auto max-w-prose lg:px-0">
             <Eyebrow>Pertanyaan yang Sering Ditanyakan</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
+            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(30px,calc(3vw_+_5px),46px)]">
               Tentang{" "}
               <span className="accent">Skin Resolve Programme</span>
             </h2>
@@ -567,21 +570,22 @@ export default function Page() {
               />
 
               <div className="relative mx-auto max-w-xl">
-                <p className="mb-3 text-[12px] font-medium uppercase tracking-eyebrow text-white/80">
+                <p className="mb-3 text-[14px] font-medium uppercase tracking-eyebrow text-white/80">
                   Mulai Program Kulitmu
                 </p>
-                <h2 className="font-light leading-tight text-white text-[clamp(1.7rem,3vw,2.4rem)]">
+                <h2 className="font-light leading-tight text-white text-[clamp(29px,3vw,38px)]">
                   Perawatan yang Punya Arah Dimulai dari{" "}
                   <span className="italic text-gold">Satu Langkah</span>
                 </h2>
-                <p className="mx-auto mt-5 max-w-md text-[16px] leading-relaxed text-white/85">
+                <p className="mx-auto mt-5 max-w-md text-[18px] leading-relaxed text-white/85">
                   Reservasi konsultasi pertamamu di Hayyu. Dokter akan melakukan skin
                   analysis, diagnosa, dan merancang Skin Resolve Programme yang tepat
                   untukmu.
                 </p>
                 <a
-                  href="https://hayyu.id/reservasi"
-                  className="mt-9 inline-flex items-center justify-center rounded-md bg-white px-9 py-3.5 text-[14px] font-medium uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream"
+                  href={RESERVATION_URL}
+                  {...externalProjectLinkProps(RESERVATION_URL)}
+                  className="mt-9 inline-flex items-center justify-center rounded-md bg-white px-9 py-3.5 text-[16px] font-medium uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream"
                 >
                   Reservasi Sekarang
                 </a>

@@ -44,7 +44,7 @@ function ComparisonCard({
       }`}
     >
       <h3
-        className={`mb-5 border-b pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] ${
+        className={`mb-5 border-b pb-3 text-[15px] font-semibold uppercase tracking-[0.16em] ${
           isBrand ? "border-white/15 text-white/90" : "border-black/10 text-muted"
       }`}
     >
@@ -54,7 +54,7 @@ function ComparisonCard({
         {side.items.map((item) => (
           <li
             key={item}
-            className={`flex gap-3 text-left text-[15px] leading-relaxed ${
+            className={`flex gap-3 text-left text-[17px] leading-relaxed ${
               isBrand ? "text-white/90" : "text-body"
             }`}
           >

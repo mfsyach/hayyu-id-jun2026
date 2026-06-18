@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { externalProjectLinkProps } from "./siteData";
 
 const RESERVATION_URL = "https://hayyu.id/reservasi";
 
@@ -43,16 +44,17 @@ export default function StickyConsultCta() {
     >
       <div className="flex items-center gap-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-white/80">
-            Konsultasi ISST
+          <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/80">
+            Konsultasi Hayyu
           </p>
-          <p className="mt-1 text-[15px] leading-snug text-white/90">
-            Mulai dari analisis kulit berbasis data.
+          <p className="mt-1 text-[17px] leading-snug text-white/90">
+            Mulai dari analisis kulit dan rekomendasi personal.
           </p>
         </div>
         <a
           href={RESERVATION_URL}
-          className="shrink-0 rounded-md bg-white px-4 py-2 text-[12px] font-medium uppercase tracking-[0.14em] text-primary transition-colors hover:bg-cream"
+          {...externalProjectLinkProps(RESERVATION_URL)}
+          className="shrink-0 rounded-md bg-white px-4 py-2 text-[14px] font-medium uppercase tracking-[0.14em] text-primary transition-colors hover:bg-cream"
         >
           Reservasi
         </a>

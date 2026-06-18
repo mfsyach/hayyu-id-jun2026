@@ -6,6 +6,24 @@ export const BASE = "https://hayyu.id";
 export type NavLink = { label: string; href: string };
 export type NavItem = NavLink & { children?: NavLink[] };
 
+const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+
+export function isExternalProjectLink(href: string) {
+  if (!/^https?:\/\//i.test(href)) return false;
+
+  try {
+    return !LOCAL_HOSTS.has(new URL(href).hostname);
+  } catch {
+    return false;
+  }
+}
+
+export function externalProjectLinkProps(href: string) {
+  return isExternalProjectLink(href)
+    ? ({ target: "_blank", rel: "noopener noreferrer" } as const)
+    : {};
+}
+
 // Real destinations confirmed from the live navbar markup.
 export const utilityLinks: NavLink[] = [
   { label: "Online Reservation", href: `${BASE}/reservasi` },
@@ -14,19 +32,20 @@ export const utilityLinks: NavLink[] = [
 ];
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: `${BASE}/` },
+  { label: "Home", href: "/" },
   {
     label: "About Us",
     href: `${BASE}/about`,
     children: [
       { label: "About Hayyu", href: `${BASE}/about` },
+      { label: "Brand Story", href: "/brand-story" },
       { label: "Founder", href: `${BASE}/founder` },
       { label: "Our Doctor", href: `${BASE}/doctor` },
       { label: "Testimonial", href: `${BASE}/testimonial` },
       { label: "Hayyupedia", href: `${BASE}/hayyupedia` },
       { label: "FAQ", href: `${BASE}/faq` },
-      { label: "ISST", href: "http://localhost:3000/" },
-      { label: "Skin Resolve Programme", href: "http://localhost:3000/skin-resolve-programme" },
+      { label: "ISST", href: "/#isst" },
+      { label: "Skin Resolve Programme", href: "/skin-resolve-programme" },
     ],
   },
   {
@@ -34,7 +53,7 @@ export const navItems: NavItem[] = [
     href: `${BASE}/treatment`,
     children: [
       { label: "All Treatment", href: `${BASE}/treatment` },
-      { label: "Skin Resolve Programme", href: `${BASE}/skin-resolve-programme` },
+      { label: "Skin Resolve Programme", href: "/skin-resolve-programme" },
       { label: "Peeling", href: `${BASE}/treatment/peeling` },
       { label: "Laser & Light", href: `${BASE}/treatment/laser-light` },
       { label: "Microneedle", href: `${BASE}/treatment/microneedle` },
@@ -58,13 +77,14 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: "About Us",
     links: [
       { label: "About Hayyu", href: `${BASE}/about` },
+      { label: "Brand Story", href: "/brand-story" },
       { label: "Founder", href: `${BASE}/founder` },
       { label: "Our Doctor", href: `${BASE}/doctor` },
       { label: "Testimonial", href: `${BASE}/testimonial` },
       { label: "Hayyupedia", href: `${BASE}/hayyupedia` },
       { label: "FAQ", href: `${BASE}/faq` },
-      { label: "ISST", href: "http://localhost:3000/" },
-      { label: "Skin Resolve Programme", href: "http://localhost:3000/skin-resolve-programme" },
+      { label: "ISST", href: "/#isst" },
+      { label: "Skin Resolve Programme", href: "/skin-resolve-programme" },
     ],
   },
   {
@@ -85,7 +105,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "Clinic Skincare", href: `${BASE}/skincare` },
       { label: "Special Offer", href: `${BASE}/special-offer` },
-      { label: "Skin Resolve Programme", href: `${BASE}/skin-resolve-programme` },
+      { label: "Skin Resolve Programme", href: "/skin-resolve-programme" },
       { label: "HayyuDoc", href: `${BASE}/hayyu-doc` },
       { label: "Partnership", href: `${BASE}/partnership` },
       { label: "News", href: `${BASE}/news` },

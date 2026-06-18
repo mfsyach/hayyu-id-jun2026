@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { navItems, utilityLinks, BASE, type NavItem } from "./siteData";
+import {
+  navItems,
+  utilityLinks,
+  BASE,
+  externalProjectLinkProps,
+  type NavItem,
+} from "./siteData";
 
 const RESERVASI = `${BASE}/reservasi`;
 
@@ -76,7 +82,13 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
       id="site-search-panel"
       className="mt-2 animate-fade-up rounded-2xl border border-gray-300 bg-white p-4 shadow-xl shadow-black/10"
     >
-      <form action={BASE} method="get" className="flex flex-col gap-3 sm:flex-row">
+      <form
+        action={BASE}
+        method="get"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col gap-3 sm:flex-row"
+      >
         <label htmlFor="site-search-input" className="sr-only">
           Cari di Hayyu
         </label>
@@ -86,18 +98,18 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
           name="s"
           type="search"
           placeholder="Cari treatment, dokter, atau artikel"
-          className="min-h-11 flex-1 rounded-lg border border-gray-200 px-4 text-[15px] text-ink outline-none transition-colors placeholder:text-muted focus:border-primary"
+          className="min-h-11 flex-1 rounded-lg border border-gray-200 px-4 text-[17px] text-ink outline-none transition-colors placeholder:text-muted focus:border-primary"
         />
         <button
           type="submit"
-          className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-6 text-[13px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500"
+          className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-6 text-[15px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500"
         >
           Cari
         </button>
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex min-h-11 items-center justify-center rounded-lg border border-gray-200 px-4 text-[13px] font-medium uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary"
+          className="inline-flex min-h-11 items-center justify-center rounded-lg border border-gray-200 px-4 text-[15px] font-medium uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary"
         >
           Tutup
         </button>
@@ -111,11 +123,15 @@ function DesktopItem({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false);
 
   const triggerClass =
-    "flex select-none items-center rounded-sm px-4 py-1 text-[15px] font-medium text-gray-700 outline-none transition-colors hover:font-semibold hover:text-gray-900";
+    "flex select-none items-center rounded-sm px-4 py-1 text-[17px] font-medium text-gray-700 outline-none transition-colors hover:font-semibold hover:text-gray-900";
 
   if (!item.children) {
     return (
-      <a href={item.href} className={triggerClass}>
+      <a
+        href={item.href}
+        className={triggerClass}
+        {...externalProjectLinkProps(item.href)}
+      >
         {item.label}
       </a>
     );
@@ -149,7 +165,8 @@ function DesktopItem({ item }: { item: NavItem }) {
             <li key={child.label}>
               <a
                 href={child.href}
-                className="block px-5 py-2.5 text-[14px] text-gray-700 transition-colors hover:bg-primary-50 hover:font-semibold hover:text-primary"
+                {...externalProjectLinkProps(child.href)}
+                className="block px-5 py-2.5 text-[16px] text-gray-700 transition-colors hover:bg-primary-50 hover:font-semibold hover:text-primary"
               >
                 {child.label}
               </a>
@@ -171,11 +188,16 @@ function MobileItem({
 }) {
   const [open, setOpen] = useState(false);
   const rowClass =
-    "flex w-full items-center justify-between px-5 py-3.5 text-left text-[16px] text-gray-700";
+    "flex w-full items-center justify-between px-5 py-3.5 text-left text-[18px] text-gray-700";
 
   if (!item.children) {
     return (
-      <a href={item.href} onClick={onNavigate} className={`${rowClass} border-b border-gray-100`}>
+      <a
+        href={item.href}
+        onClick={onNavigate}
+        className={`${rowClass} border-b border-gray-100`}
+        {...externalProjectLinkProps(item.href)}
+      >
         {item.label}
       </a>
     );
@@ -199,7 +221,8 @@ function MobileItem({
               <a
                 href={child.href}
                 onClick={onNavigate}
-                className="block py-2.5 pl-8 pr-5 text-[15px] text-gray-600"
+                {...externalProjectLinkProps(child.href)}
+                className="block py-2.5 pl-8 pr-5 text-[17px] text-gray-600"
               >
                 {child.label}
               </a>
@@ -246,10 +269,11 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-content px-4 lg:px-8 xl:px-0">
-          <div className="flex items-stretch text-[15px]">
+          <div className="flex items-stretch text-[17px]">
             <a
               href={utilityLinks[0].href}
-              className="rounded-b-xl bg-primary-500 px-4 py-2 uppercase leading-5 text-white"
+              {...externalProjectLinkProps(utilityLinks[0].href)}
+              className="rounded-b-xl bg-primary-500 px-4 py-2 uppercase leading-[22px] text-white"
             >
               {utilityLinks[0].label}
             </a>
@@ -257,7 +281,8 @@ export default function Navbar() {
               <a
                 key={l.label}
                 href={l.href}
-                className="px-4 py-2 uppercase leading-5 text-gray-600 transition-colors hover:text-primary"
+                {...externalProjectLinkProps(l.href)}
+                className="px-4 py-2 uppercase leading-[22px] text-gray-600 transition-colors hover:text-primary"
               >
                 {l.label}
               </a>
@@ -282,7 +307,7 @@ export default function Navbar() {
             {/* Desktop row */}
             <div className="hidden items-center px-5 py-3 lg:flex">
               <a
-                href={`${BASE}/`}
+                href="/"
                 className="flex flex-grow items-center"
                 aria-label="Hayyu Skin Clinic — beranda"
               >
@@ -341,7 +366,7 @@ export default function Navbar() {
               </button>
 
               <a
-                href={`${BASE}/`}
+                href="/"
                 className="flex flex-grow items-center"
                 aria-label="Hayyu Skin Clinic — beranda"
               >
@@ -369,7 +394,8 @@ export default function Navbar() {
                 <a
                   href={navItems[0].href}
                   onClick={closeMobile}
-                  className="block border-b border-gray-100 bg-primary-50 px-5 py-3.5 text-[16px] font-medium text-primary"
+                  {...externalProjectLinkProps(navItems[0].href)}
+                  className="block border-b border-gray-100 bg-primary-50 px-5 py-3.5 text-[18px] font-medium text-primary"
                 >
                   {navItems[0].label}
                 </a>
@@ -382,7 +408,8 @@ export default function Navbar() {
                 <a
                   href={utilityLinks[0].href}
                   onClick={closeMobile}
-                  className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-[14px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500"
+                  {...externalProjectLinkProps(utilityLinks[0].href)}
+                  className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-[16px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500"
                 >
                   {utilityLinks[0].label}
                 </a>
@@ -391,7 +418,8 @@ export default function Navbar() {
                     key={l.label}
                     href={l.href}
                     onClick={closeMobile}
-                    className="block py-2.5 text-center text-[14px] uppercase tracking-[0.06em] text-gray-600"
+                    {...externalProjectLinkProps(l.href)}
+                    className="block py-2.5 text-center text-[16px] uppercase tracking-[0.06em] text-gray-600"
                   >
                     {l.label}
                   </a>

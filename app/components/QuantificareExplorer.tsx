@@ -32,15 +32,15 @@ export default function QuantificareExplorer({
       >
         <div className="flex items-start justify-between gap-5">
           <div>
-            <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-primary">
+            <p className="text-[14px] font-medium uppercase tracking-[0.18em] text-primary">
               Fokus Terukur
             </p>
-            <h3 className="mt-3 text-[clamp(1.25rem,2vw,1.6rem)] font-normal leading-snug text-ink">
+            <h3 className="mt-3 text-[clamp(22px,2vw,28px)] font-normal leading-snug text-ink">
               {parameter.name}
             </h3>
           </div>
           <div className="text-right">
-            <p className="text-[11px] uppercase tracking-[0.14em] text-muted">
+            <p className="text-[13px] uppercase tracking-[0.14em] text-muted">
               Index
             </p>
             <p className="mt-1 font-light text-[42px] leading-none text-primary">
@@ -57,7 +57,7 @@ export default function QuantificareExplorer({
         </div>
 
         <div className="mt-7">
-          <p className="mb-5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary">
+          <p className="mb-5 text-[14px] font-medium uppercase tracking-[0.18em] text-primary">
             Preview Perbandingan
           </p>
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-white ring-1 ring-primary/10">
@@ -85,13 +85,13 @@ export default function QuantificareExplorer({
               style={{ left: `${100 - comparison}%` }}
               aria-hidden="true"
             />
-            <div className="absolute left-4 top-4 rounded-full bg-white/88 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
+            <div className="absolute left-4 top-4 rounded-full bg-white/88 px-3 py-1 text-[13px] font-medium uppercase tracking-[0.14em] text-primary">
               Sebelum
             </div>
-            <div className="absolute right-4 top-4 rounded-full bg-white/88 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
+            <div className="absolute right-4 top-4 rounded-full bg-white/88 px-3 py-1 text-[13px] font-medium uppercase tracking-[0.14em] text-primary">
               Sesudah
             </div>
-            <div className="absolute inset-x-5 bottom-5 hidden rounded-xl bg-white/90 px-4 py-3 text-[13px] leading-snug text-body md:block">
+            <div className="absolute inset-x-5 bottom-5 hidden rounded-xl bg-white/90 px-4 py-3 text-[15px] leading-snug text-body md:block">
               Data visual membantu dokter membandingkan kondisi kulit dari kunjungan
               ke kunjungan tanpa hanya mengandalkan persepsi.
             </div>
@@ -112,10 +112,10 @@ export default function QuantificareExplorer({
       </div>
 
       <div className="lg:pt-2">
-        <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-primary">
+        <p className="text-[14px] font-medium uppercase tracking-[0.18em] text-primary">
           Parameter Analisis
         </p>
-        <p className="mt-6 text-[16px] leading-relaxed text-body">
+        <p className="mt-6 text-[18px] leading-relaxed text-body">
           {analysisCopy}
         </p>
 
@@ -140,9 +140,9 @@ export default function QuantificareExplorer({
                     : "border-black/5 bg-white text-body hover:border-primary/30 hover:text-primary"
                 }`}
               >
-                <span className="block text-[14px] font-medium">{item.name}</span>
+                <span className="block text-[16px] font-medium">{item.name}</span>
                 <span
-                  className={`mt-2 block text-[13px] leading-snug ${
+                  className={`mt-2 block text-[15px] leading-snug ${
                     selected ? "text-white/72" : "text-muted"
                   }`}
                 >

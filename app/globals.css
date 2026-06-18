@@ -14,6 +14,7 @@
 
   body {
     @apply bg-white text-body antialiased;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.75;
     overflow-x: hidden;
@@ -44,7 +45,7 @@
 @layer components {
   /* Small uppercase section eyebrow, matching the live site's label style. */
   .eyebrow {
-    @apply text-[12px] font-medium uppercase tracking-eyebrow text-primary;
+    @apply text-[14px] font-medium uppercase tracking-eyebrow text-primary;
   }
 
   /* Heading accent words (the spec's *italic* markers). */
@@ -55,7 +56,7 @@
   /* Primary CTA — mirrors the live "Consult Now" / "Reservasi" button. */
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-md bg-primary px-8 py-3.5
-      text-[14px] font-medium uppercase tracking-[0.18em] text-white
+      text-[16px] font-medium uppercase tracking-[0.18em] text-white
       transition-all duration-300 hover:bg-primary-500 hover:-translate-y-0.5
       focus-visible:outline-2;
   }

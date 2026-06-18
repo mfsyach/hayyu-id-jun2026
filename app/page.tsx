@@ -2,615 +2,721 @@ import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ImagePlaceholder from "./components/ImagePlaceholder";
-import ComparisonTabs from "./components/ComparisonTabs";
-import QuantificareExplorer from "./components/QuantificareExplorer";
 import Reveal from "./components/Reveal";
 import SectionNav from "./components/SectionNav";
-import SrpJourney from "./components/SrpJourney";
 import StatCounter from "./components/StatCounter";
 import StickyConsultCta from "./components/StickyConsultCta";
-import TimelineExplorer from "./components/TimelineExplorer";
+import { BASE, externalProjectLinkProps } from "./components/siteData";
 
-/* ------------------------------------------------------------------ data -- */
+const RESERVATION_URL = `${BASE}/reservasi`;
 
-const pillars = [
+const trustPoints = [
+  { value: "2017", label: "Melayani wanita Indonesia sejak" },
+  { value: "100%", label: "Staf wanita untuk rasa aman dan nyaman" },
+  { value: "1", label: "Customer, one private treatment room" },
+  { value: "BPOM", label: "Produk klinik terdaftar dan terkurasi" },
+];
+
+const brandValues = [
   {
-    num: "01",
-    title: (
-      <>
-        International <span className="accent">Formula &amp; Device</span>
-      </>
-    ),
-    body: "Semua bahan dan alat yang digunakan di Hayyu dipilih berdasarkan standar dan efikasi klinis internasional — bukan popularitas pasar. Formula Clinic Skincare dibuat oleh dokter, diuji ketat, dan dimonitor secara berkelanjutan. Semua bahan aktif halal dan terdaftar BPOM.",
-    tag: "Standar Internasional",
-    emphasized: false,
-    icon: (
-      <path
-        d="M9 3h6M10 3v4.5L5.5 17a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 7.5V3"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    title: "Khusus Wanita",
+    body: "Ruang perawatan privat, staf wanita, dan alur konsultasi yang menjaga rasa aman.",
   },
   {
-    num: "02",
-    title: (
-      <>
-        Smart Combo <span className="accent">Treatment via SRP</span>
-      </>
-    ),
-    body: "Pilar ini diimplementasikan melalui Skin Resolve Programme (SRP) — sistem tata laksana perawatan terstruktur yang dikembangkan tim R&D Hayyu. Dokter merancang kombinasi treatment yang paling efektif berdasarkan diagnosa aktual, bukan protokol generik. Hasilnya: perawatan yang benar-benar personal.",
-    tag: "Implementasi: Skin Resolve Programme",
-    emphasized: true,
-    icon: (
-      <path
-        d="M5 7h7m-7 5h11M5 17h6m6-10 3 3-3 3"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    title: "Aman dan Halal",
+    body: "Produk dan prosedur dipilih dengan prinsip kehati-hatian, legalitas, dan nilai yang Hayyu jaga sejak awal.",
   },
   {
-    num: "03",
-    title: (
-      <>
-        Safest &amp; <span className="accent">Effective Result</span>
-      </>
-    ),
-    body: "Efektif tidak harus menyakitkan dan tidak harus mengubah wajah. Hayyu hanya melakukan prosedur yang aman jangka panjang — tidak ada bahan yang membuat ketergantungan, tidak ada prosedur yang merusak struktur alami wajah. Kecantikan asli, dioptimalkan, tanpa menyalahi fitrah.",
-    tag: "Aman Jangka Panjang",
-    emphasized: false,
-    icon: (
-      <path
-        d="M12 3.5c2 1.6 4 2.2 6 2.2 0 6.5-2.4 10.2-6 12.8-3.6-2.6-6-6.3-6-12.8 2 0 4-.6 6-2.2Zm-2 8 1.6 1.6L15 9.5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-  },
-  {
-    num: "04",
-    title: (
-      <>
-        Technology-measured <span className="accent">Improvement</span>
-      </>
-    ),
-    body: "Hasil perawatan di Hayyu tidak hanya dirasakan — tapi diukur secara objektif menggunakan QuantifiCare LifeViz, sistem imaging 3D buatan Prancis yang digunakan di klinik dermatologi dan uji klinis internasional. Pasien bisa melihat perubahan nyata dalam data visual yang terukur.",
-    tag: "Berbasis Data & Imaging 3D",
-    emphasized: false,
-    icon: (
-      <path
-        d="M12 3 4 7v10l8 4 8-4V7l-8-4Zm0 0v18M4 7l8 4 8-4"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    title: "Cantik Aslimu",
+    body: "Hayyu merawat dan mengoptimalkan kecantikan alami, bukan mengubah karakter wajahmu.",
   },
 ];
 
-const stagePills = [
-  "Stage 1 — Main Problem",
-  "Stage 2 — Additional Problem",
-  "Stage 3 — Maintenance & Anti-Aging",
+const isstPillars = [
+  {
+    num: "01",
+    title: "International Formula and Device",
+    body: "Bahan, formula, dan alat dipilih dengan standar klinis internasional.",
+  },
+  {
+    num: "02",
+    title: "Smart Combo Treatment",
+    body: "Kombinasi treatment dirancang dokter melalui Skin Resolve Programme.",
+  },
+  {
+    num: "03",
+    title: "Safest Effective Result",
+    body: "Perawatan mengejar hasil yang nyata tanpa mengorbankan keamanan jangka panjang.",
+  },
+  {
+    num: "04",
+    title: "Technology-measured Improvement",
+    body: "Perkembangan kulit dipantau dengan data visual dan imaging 3D QuantifiCare.",
+  },
 ];
 
 const srpStages = [
   {
-    label: stagePills[0],
-    focus: "Keluhan utama yang paling memengaruhi kondisi kulit saat ini",
-    outcome:
-      "Dokter memprioritaskan masalah utama seperti acne, pigmentasi, atau tekstur agar program awal tidak melebar dan tetap terukur.",
+    title: "Main Problem",
+    body: "Fokus pada masalah utama seperti acne, pigmentasi, tekstur, atau concern dominan lain.",
   },
   {
-    label: stagePills[1],
-    focus: "Masalah tambahan yang muncul setelah kulit lebih stabil",
-    outcome:
-      "Program dapat bergerak ke concern pendukung seperti pori, bekas jerawat, atau uneven tone dengan kombinasi treatment yang lebih spesifik.",
+    title: "Additional Problem",
+    body: "Setelah kulit lebih stabil, dokter mengoptimalkan concern pendukung secara bertahap.",
   },
   {
-    label: stagePills[2],
-    focus: "Perawatan berkala untuk menjaga hasil dan kualitas kulit",
-    outcome:
-      "Setelah target utama tercapai, dokter menyusun ritme maintenance dan pencegahan aging berdasarkan data kunjungan sebelumnya.",
+    title: "Maintenance and Anti-Aging",
+    body: "Hasil dijaga dengan ritme perawatan dan skincare klinis yang sesuai kondisi kulitmu.",
   },
 ];
 
-const srpFlow = [
-  { num: "01", title: "Skin Analyzer", desc: "QuantifiCare menganalisis kondisi kulit secara objektif" },
-  { num: "02", title: "Diagnosa Dokter", desc: "Anamnesa, physical diagnose, penentuan stage SRP" },
-  { num: "03", title: "Program Otomatis", desc: "Pilihan Reguler & Premium muncul sesuai diagnosa" },
-  { num: "04", title: "Treatment", desc: "Kombinasi treatment terbaik sesuai program yang dipilih" },
-  { num: "05", title: "Pengukuran Hasil", desc: "QuantifiCare membandingkan kondisi kulit sebelum & sesudah" },
-];
-
-const qcStats = [
-  { value: "2003", label: "Didirikan di Prancis" },
-  { value: "50+", label: "Negara pengguna" },
-  { value: "3D", label: "Imaging presisi tinggi" },
-  { value: "Klinis", label: "Digunakan dalam uji klinis dermatologi internasional" },
-];
-
-const qcParameters = [
+const treatmentPrograms = [
   {
-    name: "Kerutan & garis halus",
-    insight: "Membantu membaca area yang membutuhkan perawatan tekstur dan aging.",
-    score: 72,
-    beforeImage: "/images/quantificare/wrinkles-before.png",
-    afterImage: "/images/quantificare/wrinkles-after.png",
+    category: "Aging Programme",
+    name: "Aging Series Saphire",
+    price: "Rp 4.031.200,-",
+    oldPrice: "Rp 5.039.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/landing-page/assets/landing-page-1764236509.webp",
+    href: `${BASE}/detail-treatment/aging-serier-saphire?q=&t=`,
   },
   {
-    name: "Pori-pori & tekstur",
-    insight: "Memetakan area permukaan kulit yang perlu distabilkan bertahap.",
-    score: 64,
-    beforeImage: "/images/quantificare/pores-texture-before.png",
-    afterImage: "/images/quantificare/pores-texture-after.png",
+    category: "Aging Programme",
+    name: "Aging Series Emerald",
+    price: "Rp 6.054.000,-",
+    oldPrice: "Rp 10.090.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/landing-page/assets/landing-page-1764236509.webp",
+    href: `${BASE}/detail-treatment/aging-series-emerald?q=&t=`,
   },
   {
-    name: "Pigmentasi & flek",
-    insight: "Mendukung evaluasi noda yang tampak maupun yang mulai terbentuk.",
-    score: 78,
-    beforeImage: "/images/quantificare/pigmentation-before.png",
-    afterImage: "/images/quantificare/pigmentation-after.png",
+    category: "Brightening Programme",
+    name: "White Series Emerald",
+    price: "Rp 5.705.100,-",
+    oldPrice: "Rp 6.339.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/landing-page/assets/landing-page-1764236509.webp",
+    href: `${BASE}/detail-treatment/white-series-emerald?q=&t=`,
   },
   {
-    name: "Oiliness",
-    insight: "Menjadi masukan untuk program acne, sebum, dan perawatan harian.",
-    score: 58,
-    beforeImage: "/images/quantificare/oiliness-before.png",
-    afterImage: "/images/quantificare/oiliness-after.png",
-  },
-  {
-    name: "Volume & elastisitas",
-    insight: "Memberi konteks 3D untuk perubahan wajah tanpa mengubah karakter alami.",
-    score: 69,
-    beforeImage: "/images/quantificare/volume-elasticity-before.png",
-    afterImage: "/images/quantificare/volume-elasticity-after.png",
+    category: "Acne Programme",
+    name: "Acne Series Saphire",
+    price: "Rp 1.288.500,-",
+    oldPrice: "Rp 1.718.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/landing-page/assets/landing-page-1764236509.webp",
+    href: `${BASE}/detail-treatment/acne-series-saphire?q=&t=`,
   },
 ];
 
-const timeline = [
+const clinicProducts = [
   {
-    label: "Pilar 01 & 04",
-    title: "Analisis Kulit dengan QuantifiCare",
-    desc: "Sebelum treatment apapun, dokter Hayyu melakukan analisis kulit menggunakan QuantifiCare LifeViz. Kondisi kulit diukur secara objektif dalam berbagai parameter — semua dalam data yang bisa dibaca dan dibandingkan.",
+    category: "Supplement",
+    name: "Crystal Tomato Supplement",
+    price: "Rp 1.999.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/item/426301751.webp",
+    href: `${BASE}/detail-skincare/crystal-tomato-supplement?c=&q=`,
   },
   {
-    label: "Pilar 02",
-    title: "Diagnosa & Smart Combo via SRP",
-    desc: "Berdasarkan hasil analisis dan anamnesa, dokter memasukkan diagnosa ke dalam Skin Resolve Programme. Program kombinasi treatment — Reguler atau Premium — muncul otomatis sesuai kondisi kulit. Bukan protokol generik, tapi program yang dipersonalisasi.",
+    category: "Sunscreen",
+    name: "Ultimate Protection",
+    price: "Rp 158.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/item/310321913.webp",
+    href: `${BASE}/detail-skincare/ultimate-protection?c=&q=`,
   },
   {
-    label: "Pilar 01 & 03",
-    title: "Treatment dengan Formula & Alat Berstandar Internasional",
-    desc: "Prosedur dilakukan menggunakan bahan dan alat yang memenuhi standar internasional, halal, dan terdaftar BPOM. Semua dilakukan di ruang privat oleh staf wanita terlatih. Tidak ada prosedur yang mengubah struktur wajah secara permanen.",
+    category: "Night Care",
+    name: "Night Cream III",
+    price: "Rp 95.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/item/140185640.webp",
+    href: `${BASE}/detail-skincare/night-cream-iii?c=&q=`,
   },
   {
-    label: "Pilar 03 & 04",
-    title: "Pengukuran Hasil & Rekomendasi Clinic Skincare",
-    desc: "Setelah treatment, hasil dibandingkan dengan baseline QuantifiCare. Dokter juga merekomendasikan rangkaian Clinic Skincare Hayyu yang mendukung dan memaksimalkan hasil treatment di rumah — melengkapi sistem ISST secara menyeluruh.",
+    category: "Serum",
+    name: "White by Traxinamide Serum",
+    price: "Rp 175.000,-",
+    image: "https://storage.googleapis.com/hayyu-storage/item/193536567.webp",
+    href: `${BASE}/detail-skincare/white-by-traxinamide-serum?c=&q=`,
   },
 ];
 
-const comparisonLeft = [
-  "Diagnosis berdasarkan penilaian visual saja",
-  "Treatment generik untuk semua tipe kulit",
-  "Tidak ada program terstruktur per pasien",
-  "Hasil hanya bisa dirasakan, tidak terukur",
-  "Tidak ada baseline untuk perbandingan objektif",
-  "Sulit tahu apakah treatment benar-benar efektif",
+const updates = [
+  {
+    label: "Special Offer",
+    title: "Tetap update dengan penawaran spesial Hayyu",
+    href: `${BASE}/special-offer`,
+  },
+  {
+    label: "What is New",
+    title: "Campaign, treatment terbaru, dan cerita customer Hayyu",
+    href: `${BASE}/news`,
+  },
+  {
+    label: "Partnership",
+    title: "Mari bergabung bersama Hayyu",
+    href: `${BASE}/partnership`,
+  },
 ];
 
-const comparisonRight = [
-  "Diagnosis berbasis data imaging 3D QuantifiCare",
-  "Smart Combo Treatment yang dipersonalisasi via SRP",
-  "Program terstruktur 3 stage sesuai kondisi kulit",
-  "Hasil diukur dan terdokumentasi secara objektif",
-  "Baseline tersimpan untuk monitoring berkelanjutan",
-  "Treatment berikutnya disesuaikan berdasarkan data nyata",
+const testimonials = [
+  {
+    name: "Zaskia Mecca",
+    role: "Influencer",
+    quote:
+      "Dulu sempat trauma treatment injeksi, tapi treatment di Hayyu beneran nyaman dan hasilnya bagus banget.",
+  },
+  {
+    name: "Citra Kirana",
+    role: "Public Figure",
+    quote:
+      "Merawat kulit wajah adalah salah satu caraku untuk bersyukur atas anugerah cantik dari-Nya.",
+  },
+  {
+    name: "Larissa Chou",
+    role: "Public Figure",
+    quote:
+      "Semua staff Hayyu wanita, treatment terasa tenang, nyaman, dan tanpa was-was.",
+  },
 ];
 
-/* ----------------------------------------------------------------- shared -- */
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="eyebrow mb-3">{children}</p>;
+function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+  return (
+    <p
+      className={`mb-3 text-[14px] font-medium uppercase tracking-eyebrow ${
+        light ? "text-white/78" : "text-primary"
+      }`}
+    >
+      {children}
+    </p>
+  );
 }
 
-/* ------------------------------------------------------------------- page -- */
+function ArrowIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M5 12h14m-6-6 6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="m5 12.5 4.2 4L19 7"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function LinkButton({
+  href,
+  children,
+  variant = "primary",
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "light" | "outline";
+}) {
+  const classes =
+    variant === "light"
+      ? "bg-white text-primary hover:bg-cream"
+      : variant === "outline"
+        ? "border border-primary/25 bg-white/70 text-primary hover:bg-primary-50"
+        : "bg-primary text-white hover:bg-primary-500";
+
+  return (
+    <a
+      href={href}
+      {...externalProjectLinkProps(href)}
+      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-6 py-3 text-[15px] font-medium uppercase tracking-[0.16em] transition-all duration-300 hover:-translate-y-0.5 ${classes}`}
+    >
+      {children}
+      <ArrowIcon />
+    </a>
+  );
+}
+
+function TreatmentCard({
+  programme,
+}: {
+  programme: (typeof treatmentPrograms)[number];
+}) {
+  return (
+    <a
+      href={programme.href}
+      {...externalProjectLinkProps(programme.href)}
+      className="group block text-center"
+    >
+      <div className="relative aspect-[16/8] overflow-hidden rounded-[20px] bg-primary-50 shadow-[0_18px_48px_rgba(0,100,98,0.08)]">
+        <Image
+          src={programme.image}
+          alt={programme.name}
+          fill
+          sizes="(min-width: 1024px) 520px, 100vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+        />
+      </div>
+      <p className="mt-7 text-[13px] font-medium uppercase tracking-[0.2em] text-primary">
+        {programme.category}
+      </p>
+      <h3 className="mt-2 text-[clamp(22px,2.4vw,29px)] font-normal uppercase leading-snug tracking-[0.04em] text-muted">
+        {programme.name}
+      </h3>
+      <div className="mt-3 flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1">
+        <p className="text-[18px] font-medium text-primary">{programme.price}</p>
+        <p className="text-[14px] text-muted line-through">{programme.oldPrice}</p>
+      </div>
+    </a>
+  );
+}
+
+function ProductCard({ product }: { product: (typeof clinicProducts)[number] }) {
+  return (
+    <a
+      href={product.href}
+      {...externalProjectLinkProps(product.href)}
+      className="group block text-center"
+    >
+      <div className="relative aspect-[16/8] overflow-hidden rounded-[20px] bg-primary-50 shadow-[0_18px_48px_rgba(0,100,98,0.08)]">
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(min-width: 1024px) 520px, 100vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+        />
+      </div>
+      <p className="mt-7 text-[13px] font-medium uppercase tracking-[0.2em] text-primary">
+        {product.category}
+      </p>
+      <h3 className="mt-2 text-[clamp(22px,2.4vw,29px)] font-normal uppercase leading-snug tracking-[0.04em] text-muted">
+        {product.name}
+      </h3>
+      <p className="mt-3 text-[18px] font-medium text-primary">{product.price}</p>
+    </a>
+  );
+}
 
 export default function Page() {
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-[16px] focus:text-white"
       >
         Lewati ke konten utama
       </a>
       <Navbar />
       <SectionNav />
+
       <main id="main">
-        {/* ===================================================== 4.1 HERO === */}
-        <section className="hero-bg relative overflow-hidden pb-20 pt-36 lg:pb-28 lg:pt-44">
-          <div className="relative mx-auto grid max-w-content items-center gap-12 px-5 lg:grid-cols-2 lg:px-8 xl:px-0">
-            <div className="animate-fade-up">
-              <Eyebrow>Teknologi Hayyu Skin Clinic</Eyebrow>
-              <h1 className="font-light leading-[1.08] tracking-tight text-ink text-[clamp(2.4rem,6vw,4.4rem)]">
-                <span className="accent">International Smart</span> Skin Technology
-              </h1>
-              <p className="mt-4 text-[16px] uppercase tracking-[0.5em] text-muted">
-                I · S · S · T
-              </p>
-              <p className="mt-7 max-w-xl text-[16px] leading-relaxed text-body">
-                Sistem pendekatan perawatan kulit eksklusif Hayyu — menggabungkan
-                formula berstandar internasional, metode kombinasi cerdas berbasis
-                diagnosa, dan pengukuran hasil yang objektif dan terukur.
-              </p>
-              <a href="https://hayyu.id/reservasi" className="btn-primary mt-9">
-                Reservasi Konsultasi
-              </a>
+        <section className="hero-bg relative overflow-hidden pt-36 text-ink lg:pt-48">
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-cream/80 via-cream/58 to-white lg:bg-gradient-to-r lg:from-cream/95 lg:via-cream/78 lg:to-white/22"
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto grid max-w-content items-center gap-12 px-5 pb-20 lg:grid-cols-[0.96fr_0.9fr] lg:px-8 lg:pb-24 xl:px-0">
+            <div>
+              <Reveal className="max-w-3xl">
+                <Eyebrow>Hayyu Skin Clinic</Eyebrow>
+                <h1 className="font-light leading-[1.02] tracking-tight text-ink text-[clamp(45px,8vw,92px)]">
+                  Hayyu Skin Clinic
+                </h1>
+                <p className="mt-5 max-w-2xl text-[clamp(22px,3vw,34px)] font-light leading-tight text-primary">
+                  Karena kamu bersinar dengan Cantik Aslimu.
+                </p>
+                <p className="mt-7 max-w-2xl text-[18px] leading-relaxed text-body">
+                  Klinik kecantikan khusus wanita yang merawat kulit secara personal
+                  melalui brand story yang berakar pada rasa syukur, International
+                  Smart Skin Technology, dan Skin Resolve Programme yang terstruktur.
+                </p>
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <LinkButton href={RESERVATION_URL}>Reservasi Konsultasi</LinkButton>
+                  <LinkButton href="#brand-story" variant="outline">
+                    Kenali Hayyu
+                  </LinkButton>
+                </div>
+              </Reveal>
             </div>
 
-            <div className="relative animate-fade-up lg:pl-6">
-              <ImagePlaceholder
-                ratio="aspect-[4/5]"
-                alt="Pasien wanita berhijab sedang berkonsultasi tentang kondisi kulit bersama dokter di ruang perawatan Hayyu Skin Clinic"
-                filename="hero-konsultasi-kulit.png"
-              />
-            </div>
+            <Reveal delay={120} className="mx-auto w-full max-w-[560px] lg:max-w-none">
+              <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-primary-50 shadow-[0_24px_80px_rgba(0,100,98,0.16)] ring-1 ring-white/80 sm:aspect-[5/4] lg:aspect-[4/5]">
+                <Image
+                  src="/images/hero-konsultasi-kulit.png"
+                  alt="Konsultasi kulit di Hayyu Skin Clinic bersama dokter wanita"
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 560px, (min-width: 1024px) 44vw, 100vw"
+                  className="object-cover object-[center_42%] transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-800/18 via-transparent to-white/12"
+                  aria-hidden="true"
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={180} className="lg:col-span-2">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {trustPoints.map((point) => (
+                  <div
+                    key={point.label}
+                    className="rounded-lg border border-white/70 bg-white/82 px-5 py-5 shadow-[0_18px_44px_rgba(0,100,98,0.1)] backdrop-blur"
+                  >
+                    <p className="text-[34px] font-light leading-none text-primary">
+                      <StatCounter value={point.value} />
+                    </p>
+                    <p className="mt-3 text-[14px] leading-snug text-body">
+                      {point.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* ============================================== 4.2 WHAT IS ISST === */}
-        <section id="apa-itu-isst" className="scroll-mt-28 px-5 py-20 lg:py-24">
-          <Reveal className="mx-auto grid max-w-content items-center gap-12 lg:grid-cols-2 lg:px-8 xl:px-0">
-            <div>
-              <Eyebrow>Apa itu ISST?</Eyebrow>
-              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-                Bukan Sekadar Alat. <span className="accent">Sebuah Sistem.</span>
+        <section id="brand-story" className="scroll-mt-28 bg-white px-5 py-20 lg:py-28">
+          <div className="mx-auto grid max-w-content items-center gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:px-8 xl:px-0">
+            <Reveal>
+              <Eyebrow>Brand Story</Eyebrow>
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,54px)]">
+                Dibangun untuk Wanita yang Ingin Merawat Diri dengan Tenang
               </h2>
-              <p className="mt-6 text-body">
-                ISST — International Smart Skin Technology — adalah framework
-                perawatan kulit eksklusif yang dikembangkan Hayyu Skin Clinic. Ini
-                bukan nama satu alat atau satu prosedur, melainkan sistem menyeluruh
-                yang menentukan bagaimana setiap pasien didiagnosis, dirawat, dan
-                diukur hasilnya.
-              </p>
-              <p className="mt-4 text-body">
-                ISST terdiri dari empat pilar yang bekerja bersama — dari pemilihan
-                bahan dan alat berstandar internasional, hingga cara dokter merancang
-                kombinasi treatment yang paling tepat, hingga cara hasil diukur secara
-                objektif menggunakan teknologi imaging medis.
-              </p>
-
-              <div className="mt-8 rounded-r-xl border-l-[3px] border-primary bg-primary-50/70 px-7 py-6">
-                <p className="eyebrow mb-3">Prinsip Dasar ISST</p>
-                <p className="text-[16px] text-body">
-                  Perawatan kulit yang efektif harus dimulai dari data yang akurat,
-                  bukan dari asumsi. Setiap keputusan treatment di Hayyu — jenis
-                  peeling, laser, kombinasi prosedur, rekomendasi Clinic Skincare —
-                  didasarkan pada kondisi kulit yang terukur secara objektif dan
-                  program yang dirancang personal untuk setiap pasien.
+              <div className="mt-6 space-y-5 text-[18px] leading-relaxed text-body">
+                <p>
+                  Hayyu lahir dari keresahan sederhana: banyak wanita ingin merawat
+                  kulit, tetapi juga ingin merasa aman, nyaman, terjaga privasinya,
+                  dan yakin bahwa pilihan perawatannya tidak bertentangan dengan
+                  nilai yang mereka pegang.
+                </p>
+                <p>
+                  Karena itu Hayyu tidak sekadar menawarkan treatment. Hayyu membangun
+                  pengalaman klinik yang menghormati fitrah wanita, menjaga privasi,
+                  dan membantu setiap pasien mensyukuri kecantikan aslinya.
                 </p>
               </div>
-            </div>
+              <div className="mt-8">
+                <LinkButton href="/brand-story" variant="outline">
+                  Baca Brand Story
+                </LinkButton>
+              </div>
+            </Reveal>
 
-            <div className="lg:pl-6">
+            <Reveal delay={120}>
               <ImagePlaceholder
-                ratio="aspect-[4/3]"
-                alt="Dokter Hayyu meninjau hasil analisis kulit pasien pada layar monitor di ruang konsultasi"
-                filename="isst-tinjau-analisis-layar.png"
+                filename="hayyu-quote-portrait.png"
+                alt="Founder Hayyu Skin Clinic sebagai representasi perjalanan dan nilai brand Hayyu"
+                ratio="aspect-[5/6]"
+                className="mx-auto max-w-lg bg-primary-50"
               />
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-content gap-4 md:grid-cols-3 lg:px-8 xl:px-0">
+            {brandValues.map((value, index) => (
+              <Reveal key={value.title} delay={index * 70}>
+                <article className="h-full rounded-lg border border-primary/10 bg-cream p-7">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white text-primary ring-1 ring-primary/10">
+                    <CheckIcon />
+                  </span>
+                  <h3 className="mt-5 text-[23px] font-normal leading-snug text-ink">
+                    {value.title}
+                  </h3>
+                  <p className="mt-3 text-[16px] leading-relaxed text-body">
+                    {value.body}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
-        {/* ================================================== 4.3 4 PILAR === */}
-        <section id="pilar" className="scroll-mt-28 bg-surface/60 py-20 lg:py-24">
-          <div className="mx-auto max-w-content px-5 lg:px-8 xl:px-0">
-            <Eyebrow>4 Pilar ISST</Eyebrow>
-            <h2 className="max-w-3xl font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-              Empat Hal yang Membuat{" "}
-              <span className="accent">Perawatan Lebih Terukur</span>
-            </h2>
+        <section id="isst" className="scroll-mt-28 bg-cream px-5 py-20 lg:py-28">
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal className="max-w-3xl">
+              <Eyebrow>International Smart Skin Technology</Eyebrow>
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,54px)]">
+                Teknologi Hayyu Bukan Sekadar Alat. Ini Sebuah Sistem.
+              </h2>
+              <p className="mt-6 text-[18px] leading-relaxed text-body">
+                ISST menggabungkan formula dan device berstandar internasional,
+                diagnosa dokter, Smart Combo Treatment melalui SRP, dan pengukuran
+                hasil dengan QuantifiCare LifeViz 3D dari Prancis.
+              </p>
+            </Reveal>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2">
-              {pillars.map((p, index) => (
-                <Reveal key={p.num} delay={index * 80}>
-                <article className="pillar-card group/pillar relative h-full overflow-hidden rounded-2xl bg-white p-9 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white hover:shadow-xl hover:shadow-primary/20 hover:ring-primary/20 [&_.accent]:transition-colors [&_.accent]:duration-300">
-                  <span
-                    className="pointer-events-none absolute -right-2 -top-4 select-none font-light leading-none text-primary/[0.07] transition-colors duration-300 text-[110px] group-hover/pillar:text-white/10"
-                    aria-hidden="true"
-                  >
-                    {p.num}
-                  </span>
+            <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {isstPillars.map((pillar, index) => (
+                <Reveal key={pillar.num} delay={index * 70}>
+                  <article className="group h-full rounded-lg border border-primary/10 bg-white p-7 transition-colors hover:border-primary/25 hover:bg-primary hover:text-white">
+                    <p className="text-[15px] font-medium uppercase tracking-[0.18em] text-primary transition-colors group-hover:text-white/70">
+                      {pillar.num}
+                    </p>
+                    <h3 className="mt-5 text-[22px] font-normal leading-snug text-ink transition-colors group-hover:text-white">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-[16px] leading-relaxed text-body transition-colors group-hover:text-white/76">
+                      {pillar.body}
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
 
-                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-primary-50 text-primary transition-colors duration-300 group-hover/pillar:bg-white/15 group-hover/pillar:text-white">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      {p.icon}
-                    </svg>
-                  </span>
+            <Reveal className="mt-12 grid items-center gap-10 rounded-lg border border-primary/10 bg-white p-6 lg:grid-cols-[0.88fr_1.12fr] lg:p-8">
+              <ImagePlaceholder
+                filename="quantificare-lifeviz-3d.png"
+                alt="Perangkat QuantifiCare LifeViz untuk analisis kulit 3D di Hayyu Skin Clinic"
+                ratio="aspect-[4/3]"
+                className="rounded-lg"
+              />
+              <div>
+                <Eyebrow>QuantifiCare LifeViz</Eyebrow>
+                <h3 className="text-[clamp(26px,3vw,38px)] font-light leading-tight text-ink">
+                  Hasil Tidak Hanya Dirasakan. Hasil Juga Diukur.
+                </h3>
+                <p className="mt-5 text-[17px] leading-relaxed text-body">
+                  Analisis kulit membantu dokter membaca pigmentasi, tekstur,
+                  oiliness, pori, dan perubahan wajah secara lebih objektif. Data ini
+                  menjadi dasar rekomendasi treatment, bukan sekadar asumsi visual.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
-                  <h3 className="relative mt-6 text-[clamp(1.25rem,2vw,1.5rem)] font-normal leading-snug text-ink transition-colors duration-300 group-hover/pillar:text-white">
-                    {p.title}
-                  </h3>
-                  <p className="relative mt-3 text-[15px] leading-relaxed text-muted transition-colors duration-300 group-hover/pillar:text-white/75">
-                    {p.body}
-                  </p>
-                  <span className="relative mt-5 inline-block border-b border-primary/40 pb-0.5 text-[12px] font-medium uppercase tracking-[0.16em] text-primary transition-colors duration-300 group-hover/pillar:border-white/40 group-hover/pillar:text-white">
-                    {p.tag}
-                  </span>
-                </article>
+        <section id="srp" className="scroll-mt-28 bg-primary-800 px-5 py-20 text-white lg:py-28">
+          <div className="mx-auto grid max-w-content gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:px-8 xl:px-0">
+            <Reveal>
+              <Eyebrow light>Skin Resolve Programme</Eyebrow>
+              <h2 className="font-light leading-tight text-white text-[clamp(31px,4vw,54px)]">
+                Perawatan yang Punya Arah, Urutan, dan Tujuan.
+              </h2>
+              <p className="mt-6 text-[18px] leading-relaxed text-white/82">
+                SRP adalah sistem tata laksana perawatan kulit Hayyu. Dokter memulai
+                dari skin analyzer, anamnesa, dan diagnosa, lalu menyusun jalur
+                treatment yang sesuai kondisi aktual kulitmu.
+              </p>
+              <div className="mt-8">
+                <LinkButton href="/skin-resolve-programme" variant="light">
+                  Pelajari SRP
+                </LinkButton>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4">
+              {srpStages.map((stage, index) => (
+                <Reveal key={stage.title} delay={index * 80}>
+                  <article className="rounded-lg border border-white/12 bg-white/[0.06] p-6">
+                    <div className="flex items-start gap-5">
+                      <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white text-[16px] font-medium text-primary">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <h3 className="text-[22px] font-normal leading-snug text-white">
+                          {stage.title}
+                        </h3>
+                        <p className="mt-2 text-[16px] leading-relaxed text-white/72">
+                          {stage.body}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ============================================ 4.4 SRP INTEGRATION === */}
-        <section
-          id="srp"
-          className="relative scroll-mt-28 overflow-hidden bg-primary bg-cover bg-center bg-no-repeat pb-24 text-white lg:pb-36"
-          style={{ backgroundImage: "url('/images/srp-section-bg.png')" }}
-        >
-          <Reveal>
-            <div className="hidden">
-              <div>
-                <p className="mb-3 text-[12px] font-medium uppercase tracking-eyebrow text-white/90">
-                  Pilar 02 — Implementasi Nyata
-                </p>
-                <h2 className="max-w-4xl font-light leading-tight tracking-tight text-white text-[clamp(1.9rem,3.5vw,2.9rem)]">
-                  Smart Combo Treatment Diwujudkan Melalui{" "}
-                  <span className="italic font-light text-white/95 underline decoration-white/35 decoration-1 underline-offset-[6px]">
-                    Skin Resolve Programme
-                  </span>
-                </h2>
-
-                <div className="mt-7 max-w-4xl space-y-5 text-[16px] leading-relaxed text-white/90">
-                  <p>
-                    Konsep &quot;Smart Combo Treatment&quot; dalam ISST bukan hanya
-                    filosofi — ia diwujudkan secara konkret melalui Skin Resolve
-                    Programme (SRP), sistem tata laksana eksklusif yang dikembangkan tim
-                    Research &amp; Development Hayyu.
-                  </p>
-                  <p>
-                    Dalam SRP, dokter tidak memilihkan treatment berdasarkan menu atau
-                    tren. Setelah analisis kulit dengan QuantifiCare dan anamnesa lengkap,
-                    dokter memasukkan diagnosa ke dalam sistem — dan program kombinasi
-                    treatment yang paling tepat muncul secara otomatis, disesuaikan dengan
-                    kondisi unik kulit setiap pasien.
-                  </p>
-                </div>
+        <section id="treatments" className="scroll-mt-28 bg-white px-5 py-20 lg:py-28">
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal className="mx-auto max-w-4xl text-center">
+              <p className="text-[20px] font-light text-muted">Our Services</p>
+              <div className="mx-auto mt-5 h-1 w-64 overflow-hidden bg-primary-50">
+                <div className="h-full w-1/2 bg-primary" />
               </div>
-
-              <ImagePlaceholder
-                ratio="aspect-[4/5]"
-                className="mx-auto w-full max-w-sm rounded-[1.25rem] ring-white/10 lg:mt-10"
-                alt="Dokter Hayyu menjelaskan rencana perawatan personal melalui tablet saat konsultasi"
-                filename="hero-konsultasi-kulit.png"
-              />
-            </div>
-
-            <SrpJourney stages={srpStages} steps={srpFlow} />
-          </Reveal>
-        </section>
-
-        {/* ================================================ 4.5 QUANTIFICARE === */}
-        <section
-          id="quantificare"
-          className="relative scroll-mt-28 overflow-hidden bg-white bg-cover bg-center bg-no-repeat pb-20 pt-28 lg:pb-32 lg:pt-40"
-          style={{ backgroundImage: "url('/images/quantificare-section-bg.png')" }}
-        >
-          <Reveal className="mx-auto grid max-w-content items-start gap-12 px-5 lg:grid-cols-2 lg:px-8 xl:px-0">
-            <div>
-              <Eyebrow>Pilar 04 — Teknologi Pengukuran</Eyebrow>
-              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-                QuantifiCare LifeViz
-                <span className="accent mt-1 block">Imaging 3D dari Prancis</span>
+              <h2 className="mt-10 font-light leading-tight tracking-tight text-muted text-[clamp(32px,5vw,54px)]">
+                We offer beauty products and wide range of beauty services
               </h2>
-              <p className="mt-6 text-body">
-                Hayyu menggunakan QuantifiCare LifeViz, sistem imaging kulit 3D yang
-                dikembangkan di Prancis sejak 2003 dan dipakai oleh dermatologis, ahli
-                bedah plastik, dan peneliti klinis di lebih dari 50 negara.
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] leading-relaxed text-body">
+                Treatment Hayyu disusun untuk concern spesifik dan dipilih bersama
+                dokter, sehingga setiap langkah punya arah yang jelas.
               </p>
-              <p className="mt-4 text-body">
-                Teknologi ini memungkinkan dokter Hayyu menganalisis kondisi kulit
-                secara objektif — mengukur kerutan, pori-pori, pigmentasi, oiliness,
-                dan perubahan volume wajah dalam 3D — sebelum menentukan treatment yang
-                paling tepat. Hasil treatment juga bisa dibandingkan secara objektif
-                dari kunjungan ke kunjungan.
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {qcStats.map((s) => (
-                  <div
-                    key={s.value}
-                    className="rounded-xl bg-primary px-5 py-6 text-center text-white"
-                  >
-                    <p className="font-light text-[34px] leading-none">
-                      <StatCounter value={s.value} />
-                    </p>
-                    <p className="mt-3 text-[12px] leading-snug text-white/84">
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:pl-6">
-              <ImagePlaceholder
-                ratio="aspect-[6/5]"
-                alt="Perangkat QuantifiCare LifeViz dan visualisasi hasil pemindaian kulit wajah 3D di layar"
-                filename="quantificare-lifeviz-3d.png"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal className="mx-auto max-w-content px-5 lg:px-8 xl:px-0">
-            <QuantificareExplorer parameters={qcParameters} />
-          </Reveal>
-        </section>
-
-        {/* ============================================ 4.6 HOW ISST WORKS === */}
-        <section id="cara-kerja" className="scroll-mt-28 bg-surface/60 py-20 lg:py-24">
-          <div className="mx-auto max-w-prose px-5 lg:px-8">
-            <Eyebrow>Cara Kerja ISST</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-              Dari Analisis ke Hasil —{" "}
-              <span className="accent">Semua dalam Satu Sistem</span>
-            </h2>
-
-            <Reveal>
-              <TimelineExplorer steps={timeline} />
             </Reveal>
 
-            <ol className="sr-only">
-              {timeline.map((step, i) => (
-                <li key={i} className="relative mb-11 last:mb-0">
-                  <span
-                    className="absolute -left-[42px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary ring-4 ring-surface"
-                    aria-hidden="true"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                  </span>
-                  <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-primary">
-                    {step.label}
-                  </p>
-                  <h3 className="mt-1.5 text-[clamp(1.15rem,2vw,1.45rem)] font-normal text-ink">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted">
-                    {step.desc}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* ================================================ 4.7 COMPARISON === */}
-        <section id="perbandingan" className="mx-auto max-w-content scroll-mt-28 px-5 py-20 lg:px-8 xl:px-0 lg:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <Eyebrow>Perbedaan yang Dirasakan</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(1.9rem,3.5vw,2.9rem)]">
-              Dengan vs Tanpa <span className="accent">ISST</span>
-            </h2>
-          </div>
-
-          <ComparisonTabs
-            left={{ title: "Tanpa ISST", items: comparisonLeft }}
-            right={{ title: "Dengan ISST â€” Hayyu", items: comparisonRight }}
-          />
-
-          <div className="hidden">
-            {/* Dengan ISST — emphasized teal */}
-            <div className="rounded-2xl bg-primary p-8 text-white shadow-xl shadow-primary/20">
-              <h3 className="mb-5 border-b border-white/15 pb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-white/90">
-                Dengan ISST — Hayyu
-              </h3>
-            </div>
-          </div>
-        </section>
-
-        {/* ================================================ 4.8 PULL QUOTE === */}
-        <section className="relative overflow-hidden bg-[#006462] text-white">
-          {/* Brand wave decorations */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-          >
-            {/* Flowing ribbon — top-left */}
-            <Image
-              src="/images/quote-wave-corner.png"
-              alt=""
-              width={1040}
-              height={920}
-              className="absolute -top-px left-0 w-[230px] sm:w-[300px] lg:w-[440px]"
-            />
-            {/* Rolling humps + diagonal — bottom */}
-            <Image
-              src="/images/quote-wave-humps.png"
-              alt=""
-              width={2250}
-              height={578}
-              className="absolute -bottom-px left-0 w-full lg:w-[120%] lg:left-auto lg:-right-[6%]"
-            />
-            {/* Soft halo behind the portrait */}
-            <div className="absolute bottom-0 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/[0.045] blur-3xl lg:left-[26%] lg:h-[520px] lg:w-[520px]" />
-          </div>
-
-          <div className="relative z-10 mx-auto flex min-h-[560px] max-w-content flex-col px-5 pt-16 sm:px-8 lg:grid lg:min-h-[560px] lg:grid-cols-[0.86fr_1.14fr] lg:items-end lg:gap-6 lg:px-8 lg:pt-0 xl:px-0">
-            {/* PORTRAIT */}
-            <div className="order-2 mt-10 flex w-full justify-center self-end lg:order-1 lg:mt-0 lg:justify-end">
-              <div className="relative h-[340px] w-[238px] sm:h-[390px] sm:w-[274px] lg:h-[516px] lg:w-[352px]">
-                <Image
-                  src="/images/hayyu-quote-portrait.png"
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 352px, 274px"
-                  className="object-contain object-bottom"
-                />
+            <Reveal className="mx-auto mt-16 max-w-6xl">
+              <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+                {treatmentPrograms.slice(0, 2).map((programme) => (
+                  <TreatmentCard key={programme.name} programme={programme} />
+                ))}
               </div>
-            </div>
-
-            {/* QUOTE */}
-            <figure className="order-1 self-center lg:order-2 lg:py-16 lg:pl-2">
-              <span
-                aria-hidden="true"
-                className="block select-none font-serif text-[92px] leading-[0.55] text-white/30 sm:text-[112px] lg:text-[132px]"
-              >
-                &ldquo;
-              </span>
-              <blockquote className="mt-5 max-w-[680px] text-[clamp(1.2rem,4.6vw,1.38rem)] font-light italic leading-[1.7] text-white/95 lg:mt-6 lg:text-[clamp(1.45rem,2.05vw,1.9rem)] lg:leading-[1.6]">
-                ISST bukan tentang teknologi yang canggih demi kecanggihan itu
-                sendiri. Ini tentang memastikan setiap wanita yang datang ke Hayyu
-                mendapatkan perawatan yang benar-benar tepat untuk kondisi unik
-                kulitnya — terukur, aman, dan tanpa menyalahi fitrahnya.
-              </blockquote>
-            </figure>
+              <div className="mt-12 flex justify-center">
+                <LinkButton href={`${BASE}/treatment`} variant="outline">
+                  Lihat Treatment
+                </LinkButton>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* ======================================================= 4.9 CTA === */}
-        <section className="mx-auto max-w-content px-5 py-20 lg:px-8 xl:px-0 lg:py-24">
-          <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center lg:px-8">
-            <div
-              className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/[0.06]"
-              aria-hidden="true"
-            />
-            <div
-              className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-white/[0.05]"
-              aria-hidden="true"
-            />
-            <div className="relative mx-auto max-w-xl">
-              <p className="mb-3 text-[12px] font-medium uppercase tracking-eyebrow text-white/90">
-                Rasakan Perbedaannya
-              </p>
-              <h2 className="font-light italic leading-tight text-white text-[clamp(1.7rem,3vw,2.4rem)]">
-                Mulai dengan Analisis Kulit yang Sesungguhnya
+        <section id="products" className="scroll-mt-28 bg-cream px-5 py-20 lg:py-28">
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal className="mx-auto max-w-4xl text-center">
+              <p className="text-[20px] font-light text-muted">Our Best Seller</p>
+              <div className="mx-auto mt-5 h-1 w-64 overflow-hidden bg-primary-50">
+                <div className="h-full w-1/2 bg-primary" />
+              </div>
+              <h2 className="mt-10 font-light leading-tight tracking-tight text-muted text-[clamp(32px,5vw,54px)]">
+                Take care of your original beauty with our skincare
               </h2>
-              <p className="mx-auto mt-5 max-w-md text-[16px] leading-relaxed text-white/90">
-                Konsultasi di Hayyu dimulai dari analisis kulit menggunakan
-                QuantifiCare — data nyata sebagai fondasi Skin Resolve Programme yang
-                tepat untukmu.
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] leading-relaxed text-body">
+                Real product Hayyu dari halaman Clinic Skincare, ditampilkan lebih
+                lega agar foto dan nama produk mudah dipindai.
               </p>
-              <a
-                href="https://hayyu.id/reservasi"
-                className="mt-9 inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-[14px] font-medium uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream"
-              >
-                Reservasi Konsultasi
-              </a>
+            </Reveal>
+
+            <Reveal className="mx-auto mt-16 max-w-6xl">
+              <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+                {clinicProducts.slice(0, 2).map((product) => (
+                  <ProductCard key={product.name} product={product} />
+                ))}
+              </div>
+              <div className="mt-12 flex justify-center">
+                <LinkButton href={`${BASE}/skincare`} variant="outline">
+                  Lihat Skincare
+                </LinkButton>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="proof" className="scroll-mt-28 bg-surface/60 px-5 py-20 lg:py-28">
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal className="max-w-3xl">
+              <Eyebrow>Testimonial</Eyebrow>
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,54px)]">
+                Ini Kata Mereka yang Sudah Mencoba Perawatan Hayyu
+              </h2>
+            </Reveal>
+
+            <div className="mt-12 grid gap-4 lg:grid-cols-3">
+              {testimonials.map((item, index) => (
+                <Reveal key={item.name} delay={index * 80}>
+                  <figure className="h-full rounded-lg border border-primary/10 bg-white p-7 shadow-[0_16px_42px_rgba(0,100,98,0.06)]">
+                    <blockquote className="text-[18px] leading-relaxed text-body">
+                      "{item.quote}"
+                    </blockquote>
+                    <figcaption className="mt-7 border-t border-primary/10 pt-5">
+                      <p className="text-[17px] font-medium text-ink">{item.name}</p>
+                      <p className="mt-1 text-[14px] uppercase tracking-[0.14em] text-primary">
+                        {item.role}
+                      </p>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+
+            <div className="mt-10">
+              <LinkButton href={`${BASE}/testimonial`} variant="outline">
+                Lihat Testimonial
+              </LinkButton>
             </div>
           </div>
+        </section>
+
+        <section id="updates" className="scroll-mt-28 bg-cream px-5 py-20 lg:py-28">
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal className="max-w-3xl">
+              <Eyebrow>Special Offer, News, Partnership</Eyebrow>
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,54px)]">
+                Yang Terbaru dari Hayyu
+              </h2>
+            </Reveal>
+
+            <div className="mt-12 grid gap-4 lg:grid-cols-3">
+              {updates.map((item, index) => (
+                <Reveal key={item.label} delay={index * 80}>
+                  <a
+                    href={item.href}
+                    {...externalProjectLinkProps(item.href)}
+                    className="group flex h-full min-h-48 flex-col justify-between rounded-lg border border-primary/10 bg-white p-7 transition-all hover:-translate-y-1 hover:border-primary/25 hover:shadow-lg hover:shadow-primary/10"
+                  >
+                    <p className="text-[14px] font-medium uppercase tracking-[0.18em] text-primary">
+                      {item.label}
+                    </p>
+                    <h3 className="mt-8 text-[24px] font-light leading-snug text-ink">
+                      {item.title}
+                    </h3>
+                    <span className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium uppercase tracking-[0.14em] text-primary">
+                      View More
+                      <ArrowIcon />
+                    </span>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="app" className="scroll-mt-28 bg-white px-5 py-20 lg:py-28">
+          <div className="mx-auto grid max-w-content items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 xl:px-0">
+            <Reveal>
+              <ImagePlaceholder
+                filename="isst-tinjau-analisis-layar.png"
+                alt="Dokter Hayyu meninjau data kulit pasien sebagai bagian dari pengalaman digital Hayyu"
+                ratio="aspect-[4/3]"
+                className="rounded-lg"
+              />
+            </Reveal>
+
+            <Reveal delay={120}>
+              <Eyebrow>HayyuDoc</Eyebrow>
+              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,54px)]">
+                Solusi Tepat Perawatan Kulit Wajah Terlengkap dalam Satu Aplikasi
+              </h2>
+              <p className="mt-6 text-[18px] leading-relaxed text-body">
+                Reservasi, riwayat treatment, rekomendasi produk, dan perjalanan
+                kulitmu lebih mudah dipantau melalui ekosistem HayyuDoc.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <LinkButton href={`${BASE}/hayyu-doc`} variant="outline">
+                  Lihat HayyuDoc
+                </LinkButton>
+                <LinkButton href={RESERVATION_URL}>Reservasi</LinkButton>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="bg-primary-800 px-5 py-20 text-white lg:py-28">
+          <Reveal className="mx-auto max-w-prose text-center">
+            <Eyebrow light>Mulai Perjalanan Kulitmu</Eyebrow>
+            <h2 className="font-light leading-tight text-white text-[clamp(31px,4vw,52px)]">
+              Konsultasi yang Tepat Dimulai dari Memahami Kondisi Kulitmu.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-[18px] leading-relaxed text-white/82">
+              Datang untuk konsultasi, analisis kulit, dan rekomendasi program yang
+              sesuai. Hayyu membantu kamu merawat Cantik Aslimu dengan cara yang
+              lebih aman, personal, dan terukur.
+            </p>
+            <div className="mt-9">
+              <LinkButton href={RESERVATION_URL} variant="light">
+                Reservasi Sekarang
+              </LinkButton>
+            </div>
+          </Reveal>
         </section>
       </main>
+
       <StickyConsultCta />
       <Footer />
     </>

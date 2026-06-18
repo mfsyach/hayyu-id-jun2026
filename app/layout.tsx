@@ -3,16 +3,16 @@ import { contaxSans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ISST — International Smart Skin Technology | Hayyu Skin Clinic",
+  title: "Hayyu Skin Clinic | Klinik Kecantikan Khusus Wanita",
   description:
-    "ISST (International Smart Skin Technology) adalah pendekatan perawatan kulit eksklusif Hayyu Skin Clinic yang menggabungkan formula internasional, Smart Combo Treatment melalui Skin Resolve Programme, dan pengukuran hasil berbasis teknologi QuantifiCare 3D dari Prancis.",
+    "Hayyu Skin Clinic adalah klinik kecantikan khusus wanita yang merawat Cantik Aslimu melalui konsultasi personal, International Smart Skin Technology, dan Skin Resolve Programme.",
   metadataBase: new URL("https://hayyu.id"),
-  alternates: { canonical: "/isst" },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "ISST — International Smart Skin Technology | Hayyu Skin Clinic",
+    title: "Hayyu Skin Clinic | Klinik Kecantikan Khusus Wanita",
     description:
-      "Sistem perawatan kulit eksklusif Hayyu: formula & alat berstandar internasional, Smart Combo Treatment via Skin Resolve Programme, dan pengukuran hasil dengan QuantifiCare LifeViz 3D.",
-    url: "https://hayyu.id/isst",
+      "Klinik kecantikan khusus wanita dengan konsultasi personal, ISST, SRP, dan perawatan yang menjaga Cantik Aslimu.",
+    url: "https://hayyu.id/",
     siteName: "Hayyu Skin Clinic",
     locale: "id_ID",
     type: "website",

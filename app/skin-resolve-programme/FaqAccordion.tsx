@@ -44,7 +44,7 @@ export default function FaqAccordion() {
                 type="button"
                 onClick={() => setOpen(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-start justify-between gap-6 text-left text-[15px] font-medium leading-snug text-ink"
+                className="flex w-full items-start justify-between gap-6 text-left text-[17px] font-medium leading-snug text-ink"
               >
                 <span>{item.q}</span>
                 <span
@@ -67,7 +67,7 @@ export default function FaqAccordion() {
               </button>
             </dt>
             {isOpen && (
-              <dd className="mt-4 text-[15px] leading-relaxed text-body">
+              <dd className="mt-4 text-[17px] leading-relaxed text-body">
                 {item.a}
               </dd>
             )}

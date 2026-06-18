@@ -34,14 +34,14 @@ export default function SrpJourney({
 
       <div className="grid items-start gap-10 pt-32 lg:grid-cols-[minmax(0,0.6fr)_minmax(23rem,0.4fr)] lg:gap-20 lg:pt-44">
         <div>
-          <h2 className="max-w-4xl font-light leading-tight tracking-tight text-white text-[clamp(2rem,3.55vw,3.05rem)]">
+          <h2 className="max-w-4xl font-light leading-tight tracking-tight text-white text-[clamp(32px,calc(3vw_+_5px),49px)]">
             Smart Combo Treatment Diwujudkan Melalui{" "}
             <span className="italic font-light text-white/95 underline decoration-white/70 decoration-1 underline-offset-[7px]">
               Skin Resolve Programme
             </span>
           </h2>
 
-          <div className="mt-12 max-w-[53rem] space-y-7 text-[16px] leading-relaxed text-white/84">
+          <div className="mt-12 max-w-[53rem] space-y-7 text-[18px] leading-relaxed text-white/84">
             <p>
               Konsep &quot;Smart Combo Treatment&quot; dalam ISST bukan hanya filosofi
               &mdash; ia diwujudkan secara konkret melalui Skin Resolve Programme
@@ -73,7 +73,7 @@ export default function SrpJourney({
                     aria-selected={selected}
                     aria-controls="srp-stage-panel"
                     onClick={() => setActiveStage(index)}
-                    className={`block w-full rounded-xl px-4 py-4 text-left text-[13px] font-medium uppercase tracking-[0.16em] transition-colors ${
+                    className={`block w-full rounded-xl px-4 py-4 text-left text-[15px] font-medium uppercase tracking-[0.16em] transition-colors ${
                       selected
                         ? "bg-white text-primary"
                         : "text-white/72 hover:bg-white/10 hover:text-white"
@@ -91,13 +91,13 @@ export default function SrpJourney({
               role="tabpanel"
               className="rounded-2xl border border-white/15 bg-white/[0.08] p-6 lg:p-7"
             >
-              <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white/74">
+              <p className="text-[14px] font-medium uppercase tracking-[0.18em] text-white/74">
                 Fokus Program
               </p>
-              <h3 className="mt-4 max-w-[31rem] text-[clamp(1.35rem,2vw,1.75rem)] font-normal leading-snug text-white">
+              <h3 className="mt-4 max-w-[31rem] text-[clamp(24px,2vw,30px)] font-normal leading-snug text-white">
                 {stage.focus}
               </h3>
-              <p className="mt-5 max-w-[31rem] text-[15px] leading-relaxed text-white/82">
+              <p className="mt-5 max-w-[31rem] text-[17px] leading-relaxed text-white/82">
                 {stage.outcome}
               </p>
             </div>
@@ -140,11 +140,11 @@ export default function SrpJourney({
                   >
                     {item.num}
                   </span>
-                  <span className="mt-auto block pt-7 text-[14px] font-medium leading-snug">
+                  <span className="mt-auto block pt-7 text-[16px] font-medium leading-snug">
                     {item.title}
                   </span>
                   <span
-                    className={`mt-1.5 block text-[13px] leading-snug ${
+                    className={`mt-1.5 block text-[15px] leading-snug ${
                       selected ? "text-white/72" : "text-primary/62"
                     }`}
                   >

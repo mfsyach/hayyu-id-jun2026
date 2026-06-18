@@ -52,7 +52,7 @@ export default function TimelineExplorer({ steps }: { steps: TimelineStep[] }) {
                 }`}
               >
                 <span
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[13px] font-medium ${
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[15px] font-medium ${
                     selected ? "bg-white text-primary" : "bg-primary-50 text-primary"
                   }`}
                 >
@@ -60,13 +60,13 @@ export default function TimelineExplorer({ steps }: { steps: TimelineStep[] }) {
                 </span>
                 <span>
                   <span
-                    className={`block text-[11px] font-medium uppercase tracking-[0.14em] ${
+                    className={`block text-[13px] font-medium uppercase tracking-[0.14em] ${
                       selected ? "text-white/65" : "text-primary"
                     }`}
                   >
                     {item.label}
                   </span>
-                  <span className="mt-0.5 block text-[14px] font-medium leading-snug">
+                  <span className="mt-0.5 block text-[16px] font-medium leading-snug">
                     {item.title}
                   </span>
                 </span>
@@ -77,20 +77,20 @@ export default function TimelineExplorer({ steps }: { steps: TimelineStep[] }) {
       </ol>
 
       <div className="rounded-2xl bg-white p-7 ring-1 ring-black/5">
-        <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-primary">
+        <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-primary">
           {step.label}
         </p>
-        <h3 className="mt-2 text-[clamp(1.35rem,2.6vw,2rem)] font-light leading-tight text-ink">
+        <h3 className="mt-2 text-[clamp(24px,3vw,32px)] font-light leading-tight text-ink">
           {step.title}
         </h3>
-        <p className="mt-4 text-[16px] leading-relaxed text-body">{step.desc}</p>
+        <p className="mt-4 text-[18px] leading-relaxed text-body">{step.desc}</p>
 
         <div className="mt-7 flex items-center justify-between gap-3 border-t border-black/5 pt-5">
           <button
             type="button"
             onClick={previous}
             disabled={active === 0}
-            className="inline-flex items-center gap-2 rounded-md border border-primary/25 px-4 py-2 text-[13px] font-medium uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary-50 disabled:pointer-events-none disabled:opacity-35"
+            className="inline-flex items-center gap-2 rounded-md border border-primary/25 px-4 py-2 text-[15px] font-medium uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary-50 disabled:pointer-events-none disabled:opacity-35"
           >
             <Arrow direction="left" />
             Sebelumnya
@@ -99,7 +99,7 @@ export default function TimelineExplorer({ steps }: { steps: TimelineStep[] }) {
             type="button"
             onClick={next}
             disabled={active === steps.length - 1}
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-[13px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500 disabled:pointer-events-none disabled:opacity-35"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-[15px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-500 disabled:pointer-events-none disabled:opacity-35"
           >
             Berikutnya
             <Arrow direction="right" />

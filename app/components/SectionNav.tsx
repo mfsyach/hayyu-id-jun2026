@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 
 const sections = [
-  { id: "apa-itu-isst", label: "Apa itu ISST" },
-  { id: "pilar", label: "4 Pilar" },
+  { id: "brand-story", label: "Brand Story" },
+  { id: "isst", label: "ISST" },
   { id: "srp", label: "SRP" },
-  { id: "quantificare", label: "QuantifiCare" },
-  { id: "cara-kerja", label: "Cara Kerja" },
-  { id: "perbandingan", label: "Perbandingan" },
+  { id: "treatments", label: "Treatment" },
+  { id: "products", label: "Skincare" },
+  { id: "proof", label: "Testimonial" },
+  { id: "app", label: "HayyuDoc" },
 ];
 
 /**
@@ -68,7 +69,7 @@ export default function SectionNav() {
           return (
             <li key={s.id} className="group flex items-center justify-end gap-3">
               <span
-                className={`whitespace-nowrap text-[11px] uppercase tracking-[0.14em] transition-all duration-200 ${
+                className={`whitespace-nowrap text-[13px] uppercase tracking-[0.14em] transition-all duration-200 ${
                   on
                     ? "text-primary opacity-100"
                     : "text-gray-400 opacity-0 group-hover:opacity-100"

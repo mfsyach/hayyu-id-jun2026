@@ -4,7 +4,7 @@ import {
   socialLinks,
   contact,
   appLinks,
-  BASE,
+  externalProjectLinkProps,
 } from "./siteData";
 
 function SocialIcon({ name }: { name: string }) {
@@ -50,7 +50,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
+      <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
         {title}
       </h3>
       <ul className="space-y-2.5">
@@ -58,7 +58,8 @@ function FooterColumn({
           <li key={l.label}>
             <a
               href={l.href}
-              className="text-[14px] text-body transition-colors hover:text-primary"
+              {...externalProjectLinkProps(l.href)}
+              className="text-[16px] text-body transition-colors hover:text-primary"
             >
               {l.label}
             </a>
@@ -72,12 +73,13 @@ function FooterColumn({
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-black/5 bg-[url('/images/footer-bg.png')] bg-cover bg-center bg-no-repeat">
-
       <div className="relative mx-auto max-w-content px-5 py-16 lg:px-8 xl:px-0">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
-          {/* Brand + contact */}
           <div className="lg:col-span-1">
-            <a href={`${BASE}/`} aria-label="Hayyu Skin Clinic — beranda">
+            <a
+              href="/"
+              aria-label="Hayyu Skin Clinic - beranda"
+            >
               <Image
                 src="/images/hayyu-logo-hd.png"
                 alt="Hayyu Skin Clinic"
@@ -86,38 +88,37 @@ export default function Footer() {
                 className="h-14 w-auto"
               />
             </a>
-            <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-body">
+            <p className="mt-5 max-w-xs text-[16px] leading-relaxed text-body">
               Klinik kecantikan yang merawat kulitmu secara personal dengan
               International Smart Skin Technology.
             </p>
 
             <div className="mt-6 space-y-2">
-              <h3 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
+              <h3 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
                 Direct Contact
               </h3>
               <a
                 href={contact.whatsappHref}
-                className="block text-[14px] text-body transition-colors hover:text-primary"
+                {...externalProjectLinkProps(contact.whatsappHref)}
+                className="block text-[16px] text-body transition-colors hover:text-primary"
               >
                 WhatsApp: {contact.whatsappLabel}
               </a>
               <a
                 href={contact.emailHref}
-                className="block text-[14px] text-body transition-colors hover:text-primary"
+                className="block text-[16px] text-body transition-colors hover:text-primary"
               >
                 Email: {contact.emailLabel}
               </a>
             </div>
           </div>
 
-          {/* Link columns */}
           {footerColumns.map((col) => (
             <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
 
-          {/* Social + apps */}
           <div>
-            <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
+            <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
               Connect with Us
             </h3>
             <div className="flex flex-wrap gap-3">
@@ -125,8 +126,7 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...externalProjectLinkProps(s.href)}
                   aria-label={s.label}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/30 text-primary transition-colors hover:bg-primary hover:text-white"
                 >
@@ -135,37 +135,35 @@ export default function Footer() {
               ))}
             </div>
 
-            <h3 className="mb-3 mt-7 text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
+            <h3 className="mb-3 mt-7 text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
               Download Our Apps
             </h3>
             <div className="flex flex-col gap-2.5">
               <a
                 href={appLinks.googlePlay}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...externalProjectLinkProps(appLinks.googlePlay)}
                 className="inline-flex items-center gap-2.5 rounded-lg border border-primary/25 px-4 py-2 text-primary transition-colors hover:bg-primary-50"
                 aria-label="Download di Google Play"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M3.6 2.3 13 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Zm10.7 8.3 2.6-2.6 3.9 2.2c.7.4.7 1.4 0 1.8l-3.9 2.2-2.6-2.6 0 .1Zm-1 1.4L5.4 21l9.3-5.3-1.4-1.7Zm0-3.4 1.4-1.7L5.4 3l7.9 6.6-.0-.6Z" />
                 </svg>
-                <span className="text-left text-[13px] leading-tight">
-                  <span className="block text-[10px] uppercase tracking-wider text-muted">Get it on</span>
+                <span className="text-left text-[15px] leading-tight">
+                  <span className="block text-[12px] uppercase tracking-wider text-muted">Get it on</span>
                   Google Play
                 </span>
               </a>
               <a
                 href={appLinks.appStore}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...externalProjectLinkProps(appLinks.appStore)}
                 className="inline-flex items-center gap-2.5 rounded-lg border border-primary/25 px-4 py-2 text-primary transition-colors hover:bg-primary-50"
                 aria-label="Download di App Store"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M16.4 1.6c.1 1-.3 2-1 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.7-.8 1.8-1.4 2.7-1.4ZM19 17c-.5 1.1-.7 1.6-1.3 2.6-.9 1.4-2.1 3.1-3.6 3.1-1.3 0-1.7-.9-3.5-.8-1.8 0-2.2.8-3.5.8-1.5 0-2.7-1.6-3.6-3-2.4-3.8-2.7-8.2-1.2-10.6 1.1-1.7 2.8-2.7 4.4-2.7 1.6 0 2.7 1 4 1 1.3 0 2-1 4-1 1.4 0 2.9.8 4 2.1-3.5 1.9-2.9 6.9 0 8.5Z" />
                 </svg>
-                <span className="text-left text-[13px] leading-tight">
-                  <span className="block text-[10px] uppercase tracking-wider text-muted">Download on the</span>
+                <span className="text-left text-[15px] leading-tight">
+                  <span className="block text-[12px] uppercase tracking-wider text-muted">Download on the</span>
                   App Store
                 </span>
               </a>
@@ -174,11 +172,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright bar */}
       <div className="relative border-t border-black/5">
         <div className="mx-auto max-w-content px-5 py-5 lg:px-8 xl:px-0">
-          <p className="text-center text-[12px] uppercase tracking-[0.12em] text-muted">
-            Copyright © 2026 PT. RUVI RIZQY BERKAH. ALL RIGHT RESERVED
+          <p className="text-center text-[14px] uppercase tracking-[0.12em] text-muted">
+            Copyright &copy; 2026 PT. RUVI RIZQY BERKAH. ALL RIGHT RESERVED
           </p>
         </div>
       </div>
