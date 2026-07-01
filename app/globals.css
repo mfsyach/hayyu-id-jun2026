@@ -14,10 +14,17 @@
 
   body {
     @apply bg-white text-body antialiased;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 1.68;
     overflow-x: hidden;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      font-size: 18px;
+      line-height: 1.75;
+    }
   }
 
   /* Respect users who prefer reduced motion: kill smooth scroll + animations. */
@@ -39,6 +46,26 @@
     outline: 2px solid #006462;
     outline-offset: 2px;
     border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  @media (max-width: 639px) {
+    .text-\[18px\] {
+      font-size: 16px;
+    }
+
+    .text-\[17px\] {
+      font-size: 15.5px;
+    }
+
+    .leading-relaxed {
+      line-height: 1.62;
+    }
+
+    .tracking-eyebrow {
+      letter-spacing: 0.2em;
+    }
   }
 }
 
@@ -89,6 +116,55 @@
         url("/images/hero-section-bg.png");
       background-position: center, center top;
       background-size: cover, cover;
+    }
+  }
+
+  .figma-hero-bg {
+    background-color: #fbfaf8;
+    background-image:
+      linear-gradient(90deg, rgba(251, 250, 248, 0.95) 0%, rgba(251, 250, 248, 0) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 58%),
+      url("/images/figma-home/hero-background.png");
+    background-position: center, center, center top;
+    background-repeat: no-repeat;
+    background-size: cover, cover, cover;
+  }
+
+  .figma-brand-story-bg {
+    background-image: url("/images/figma-home/pattern-light-1.svg");
+    background-position: right -260px center;
+    background-repeat: no-repeat;
+    background-size: 760px auto;
+  }
+
+  .figma-why-bg {
+    background-image: url("/images/figma-home/pattern-light-2.svg");
+    background-position: left -280px center;
+    background-repeat: no-repeat;
+    background-size: 720px auto;
+  }
+
+  .figma-srp-bg {
+    background-color: #FBFAF8;
+    background-image: url("/images/figma-home/pattern-light-2.svg");
+    background-position: right -280px center;
+    background-repeat: no-repeat;
+    background-size: 720px auto;
+  }
+
+  @media (max-width: 767px) {
+    .figma-hero-bg {
+      background-image:
+        linear-gradient(180deg, rgba(251, 250, 248, 0.96) 0%, rgba(251, 250, 248, 0.78) 54%, rgba(251, 250, 248, 0.95) 100%),
+        url("/images/figma-home/hero-background.png");
+      background-position: center, 62% top;
+      background-size: cover, auto 620px;
+    }
+
+    .figma-brand-story-bg,
+    .figma-why-bg,
+    .figma-srp-bg {
+      background-size: 520px auto;
     }
   }
 }

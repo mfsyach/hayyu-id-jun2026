@@ -95,7 +95,7 @@ export default function Footer() {
 
             <div className="mt-6 space-y-2">
               <h3 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
-                Direct Contact
+                Kontak Langsung
               </h3>
               <a
                 href={contact.whatsappHref}
@@ -119,7 +119,7 @@ export default function Footer() {
 
           <div>
             <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
-              Connect with Us
+              Terhubung dengan Hayyu
             </h3>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((s) => (
@@ -136,7 +136,7 @@ export default function Footer() {
             </div>
 
             <h3 className="mb-3 mt-7 text-[15px] font-semibold uppercase tracking-[0.16em] text-primary">
-              Download Our Apps
+              Unduh Aplikasi HayyuDoc
             </h3>
             <div className="flex flex-col gap-2.5">
               <a

@@ -321,9 +321,9 @@ export default function Navbar() {
                 />
               </a>
 
-              <div role="menubar" className="flex items-center">
+              <div className="flex items-center">
                 {navItems.map((item, i) => (
-                  <div key={item.label} className="flex items-center" role="none">
+                  <div key={item.label} className="flex items-center">
                     {i > 0 && (
                       <span
                         className="mx-0.5 h-4 w-px bg-gray-400/70"
@@ -348,20 +348,29 @@ export default function Navbar() {
                 type="button"
                 aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                 aria-expanded={mobileOpen}
+                aria-controls="mobile-menu-panel"
                 onClick={() => {
                   setMobileOpen((v) => !v);
                   setSearchOpen(false);
                 }}
                 className="me-2 flex size-11 items-center justify-center rounded-md border border-gray-100 text-primary-500"
               >
-                {/* Hamburger stays in both states, matching the live site. */}
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M4 6h16M4 12h16M4 18h16"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                  {mobileOpen ? (
+                    <path
+                      d="M6 6l12 12M18 6 6 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  ) : (
+                    <path
+                      d="M4 6h16M4 12h16M4 18h16"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  )}
                 </svg>
               </button>
 
@@ -388,7 +397,10 @@ export default function Navbar() {
 
           {/* Mobile dropdown panel */}
           {mobileOpen && (
-            <div className="mt-2 animate-fade-up overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-lg shadow-black/10 lg:hidden">
+            <div
+              id="mobile-menu-panel"
+              className="mt-2 animate-fade-up overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-lg shadow-black/10 lg:hidden"
+            >
               <nav aria-label="Menu mobile">
                 {/* Home highlighted, as on the live site */}
                 <a

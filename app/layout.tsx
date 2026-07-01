@@ -8,12 +8,25 @@ export const metadata: Metadata = {
     "Hayyu Skin Clinic adalah klinik kecantikan khusus wanita yang merawat Cantik Aslimu melalui konsultasi personal, International Smart Skin Technology, dan Skin Resolve Programme.",
   metadataBase: new URL("https://hayyu.id"),
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/images/hayyu-logo.png",
+    shortcut: "/images/hayyu-logo.png",
+    apple: "/images/hayyu-logo.png",
+  },
   openGraph: {
     title: "Hayyu Skin Clinic | Klinik Kecantikan Khusus Wanita",
     description:
       "Klinik kecantikan khusus wanita dengan konsultasi personal, ISST, SRP, dan perawatan yang menjaga Cantik Aslimu.",
     url: "https://hayyu.id/",
     siteName: "Hayyu Skin Clinic",
+    images: [
+      {
+        url: "/images/hero-konsultasi-kulit.png",
+        width: 1200,
+        height: 900,
+        alt: "Konsultasi kulit di Hayyu Skin Clinic bersama dokter wanita",
+      },
+    ],
     locale: "id_ID",
     type: "website",
   },

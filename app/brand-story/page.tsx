@@ -45,15 +45,15 @@ const timeline = [
     year: "2018",
     title: "Ekspansi & Sistem Kemitraan",
     desc: "Kepercayaan customer tumbuh. Hayyu membuka cabang di Sidoarjo dan mulai membuka peluang investasi bagi mitra yang percaya pada visi yang sama.",
-    image: "/images/isst-tinjau-analisis-layar.png",
-    alt: "Dokter Hayyu meninjau hasil analisis kulit sebagai representasi sistem dan standar layanan",
+    image: "/images/brand/clinic-partnership-system.png",
+    alt: "Kolase sistem klinik dan kemitraan Hayyu sebagai representasi ekspansi awal",
   },
   {
     year: "2019–2022",
     title: "Hadir di Malang, Tangerang, Bekasi, Depok",
-    desc: "Hayyu hadir di kota-kota besar Jawa dan Jabodetabek. Setiap cabang membawa standar yang sama: staf wanita, ruang treatment privat, produk halal bersertifikat BPOM.",
-    image: "/images/srp-section-bg.png",
-    alt: "Suasana klinik Hayyu sebagai representasi pertumbuhan cabang di berbagai kota",
+    desc: "Hayyu hadir di kota-kota besar Jawa dan Jabodetabek. Setiap cabang membawa standar yang sama: staf wanita, ruang treatment privat, dan produk klinik yang dikurasi.",
+    image: "/images/brand/clinic-growth-collage.png",
+    alt: "Kolase suasana klinik Hayyu sebagai representasi pertumbuhan cabang di berbagai kota",
   },
   {
     year: "2023–Kini",
@@ -67,7 +67,7 @@ const timeline = [
 const values = [
   {
     title: "Aman & Halal",
-    desc: "Semua produk dan prosedur terdaftar BPOM dan memenuhi standar kehalalan. Bukan klaim — ini komitmen yang bisa diverifikasi.",
+    desc: "Hayyu menempatkan legalitas produk, kehati-hatian prosedur, dan nilai halal-aware sebagai bagian dari rasa aman yang terus dijaga.",
     icon: (
       <path
         d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
@@ -206,8 +206,8 @@ export default function BrandStoryPage() {
 
             <Reveal delay={120}>
               <StoryImage
-                src="/images/hero-konsultasi-kulit.png"
-                alt="Konsultasi kulit di Hayyu Skin Clinic sebagai pembuka perjalanan brand"
+                src="/images/brand/founder-values-workspace.png"
+                alt="Logo Hayyu, catatan nilai Cantik Aslimu, dan suasana kerja dokter sebagai pembuka perjalanan brand"
                 priority
                 className="shadow-[0_24px_80px_rgba(0,100,98,0.16)]"
               />
@@ -253,8 +253,8 @@ export default function BrandStoryPage() {
             </div>
 
             <StoryImage
-              src="/images/hayyu-quote-portrait.png"
-              alt="dr. Ratna Yuliarviana, Founder dan Medical Director Hayyu Skin Clinic"
+              src="/images/brand/representative-doctor-values.png"
+              alt="Dokter wanita Hayyu sebagai representasi awal mula dan nilai pelayanan Hayyu Skin Clinic"
               ratio="aspect-[5/6]"
               className="mx-auto w-full max-w-lg bg-primary-50"
             />
@@ -299,72 +299,139 @@ export default function BrandStoryPage() {
             }}
             aria-hidden="true"
           />
-          <span
-            className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none text-[clamp(112px,18vw,224px)] leading-none text-white/[0.05]"
-            aria-hidden="true"
-          >
-            شُكْر
-          </span>
 
-          <Reveal className="relative mx-auto max-w-prose text-center">
-            <Eyebrow light>Nilai yang Menjadi Akar</Eyebrow>
-            <h2 className="font-light leading-tight text-white text-[clamp(32px,calc(4vw_+_7px),54px)]">
-              Kecantikan Bukan Soal Mengubah.{" "}
-              <span className="italic text-gold">Ini Soal Mensyukuri.</span>
-            </h2>
-            <div className="mx-auto mt-7 max-w-2xl space-y-5 text-[18px] leading-relaxed text-white/82">
-              <p>
-                Di balik semua teknologi, semua treatment, semua inovasi yang Hayyu kembangkan — ada satu keyakinan yang tidak pernah bergeser sejak hari pertama.
+          <div className="relative mx-auto grid max-w-content items-start gap-x-14 gap-y-12 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 xl:px-0">
+            <Reveal>
+              <Eyebrow light>Nilai yang Menjadi Akar</Eyebrow>
+              <h2 className="font-light leading-tight text-white text-[clamp(32px,calc(4vw_+_7px),54px)]">
+                Kecantikan Bukan Soal Mengubah.{" "}
+                <span className="italic text-gold">Ini Soal Mensyukuri.</span>
+              </h2>
+
+              {/* شُكْر (shukr — gratitude): the value at the brand's root, set as a
+                  deliberate gold motif with a translation rather than faint
+                  background decoration. */}
+              <figure className="mt-12 flex items-center gap-6 border-t border-white/15 pt-10">
+                <span
+                  className="select-none text-[clamp(60px,9vw,100px)] leading-none text-gold/90"
+                  aria-hidden="true"
+                >
+                  شُكْر
+                </span>
+                <figcaption className="text-[15px] leading-relaxed text-white/72">
+                  <span className="block font-medium uppercase tracking-[0.18em] text-white/88">
+                    Syukur
+                  </span>
+                  rasa syukur atas fitrah sebagai wanita
+                </figcaption>
+              </figure>
+            </Reveal>
+
+            <Reveal delay={120} className="lg:pt-3">
+              <div className="space-y-5 text-[18px] leading-relaxed text-white/82">
+                <p>
+                  Di balik semua teknologi, semua treatment, semua inovasi yang Hayyu kembangkan — ada satu keyakinan yang tidak pernah bergeser sejak hari pertama.
+                </p>
+                <p>
+                  Setiap wanita lahir dengan fitrahnya sendiri. Kulit, wajah, tubuh — itu bukan kekurangan yang harus diperbaiki. Itu anugerah yang layak dirawat, dijaga, dan disyukuri.
+                </p>
+              </div>
+              <blockquote className="my-8 border-l-2 border-gold pl-6 text-[clamp(20px,2.4vw,26px)] font-light italic leading-snug text-white">
+                Rasa syukur atas fitrah sebagai wanita adalah nilai yang berakar dalam, tapi berbicara kepada semua.
+              </blockquote>
+              <p className="text-[18px] leading-relaxed text-white/82">
+                Bukan hanya kepada satu kelompok, satu latar belakang, satu kepercayaan. Karena setiap wanita — di mana pun — mengenal perasaan itu.
               </p>
-              <p>
-                Setiap wanita lahir dengan fitrahnya sendiri. Kulit, wajah, tubuh — itu bukan kekurangan yang harus diperbaiki. Itu anugerah yang layak dirawat, dijaga, dan disyukuri.
-              </p>
-              <p>
-                <em>Rasa syukur atas fitrah sebagai wanita</em> adalah nilai yang berakar dalam, tapi berbicara kepada semua. Bukan hanya kepada satu kelompok, satu latar belakang, satu kepercayaan. Karena setiap wanita — di mana pun — mengenal perasaan itu.
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </section>
 
         <section id="evolusi-brand" className="scroll-mt-36 px-5 py-20 lg:py-28">
-          <Reveal className="mx-auto max-w-prose">
-            <Eyebrow>Evolusi Brand</Eyebrow>
-            <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,53px)]">
-              Nama Berubah, <span className="accent">Akar Tetap Sama</span>
-            </h2>
-            <p className="mt-6 text-[18px] leading-relaxed text-body">
-              Hayyu tidak lahir dengan nama yang sekarang dikenal. Seperti banyak brand yang tumbuh dengan jujur, identitas kami berkembang seiring pemahaman yang semakin dalam tentang misi kami yang sesungguhnya.
-            </p>
-
-            <div className="my-10 overflow-hidden rounded-xl border-l-[3px] border-gold bg-white shadow-[0_18px_54px_rgba(0,100,98,0.07)]">
-              <div className="space-y-4 px-7 py-8 text-[17px] leading-relaxed text-body sm:px-9">
-                <p>
-                  <strong>Hayyu Syar&apos;i Skin Clinic</strong> adalah nama awal yang mencerminkan akar nilai kami dengan jelas — klinik yang dibangun di atas prinsip kehalalan, privasi, dan kenyamanan wanita Muslim. Nama itu adalah keberanian untuk menjadi berbeda di industri yang belum banyak bicara soal ini.
-                </p>
-                <p>
-                  Seiring bertumbuh, kami menyadari sesuatu yang penting: nilai yang kami pegang — <em>rasa syukur atas fitrah wanita</em> — bukan nilai eksklusif. Ia adalah nilai universal yang seharusnya bisa dirasakan oleh semua wanita, tanpa memandang latar belakang mereka.
-                </p>
-                <p>
-                  Menjadi <strong>Hayyu Skin Clinic</strong> bukan berarti melepas identitas awal. Justru sebaliknya — kami memperluas bahasa kami. Nilai yang selama ini kami pegang dengan kuat, kini kami bawa lebih jauh: bukan hanya sebagai ciri khas sebuah klinik, tapi sebagai warisan yang ingin kami ukir di industri kecantikan Indonesia.
-                </p>
+          <div className="mx-auto max-w-content lg:px-8 xl:px-0">
+            <Reveal>
+              <div className="grid gap-x-12 gap-y-6 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <Eyebrow>Evolusi Brand</Eyebrow>
+                  <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,53px)]">
+                    Nama Berubah, <span className="accent">Akar Tetap Sama</span>
+                  </h2>
+                </div>
+                <div className="lg:col-span-5 lg:pt-2">
+                  <p className="text-[18px] leading-relaxed text-body">
+                    Hayyu tidak lahir dengan nama yang sekarang dikenal. Seperti banyak brand yang tumbuh dengan jujur, identitas kami berkembang seiring pemahaman yang semakin dalam tentang misi kami yang sesungguhnya.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-wrap items-center gap-3 border-t border-primary/10 bg-primary-50/55 px-7 py-6 sm:px-9">
-                <span className="rounded-md border border-primary/30 bg-white px-4 py-2 text-[16px] font-medium text-primary">
-                  Hayyu Syar&apos;i Skin Clinic
-                </span>
-                <span className="text-[24px] text-gold" aria-hidden="true">
-                  →
-                </span>
-                <span className="rounded-md bg-primary px-4 py-2 text-[16px] font-medium text-white">
-                  Hayyu Skin Clinic
-                </span>
-              </div>
-            </div>
+            </Reveal>
 
-            <p className="text-[18px] leading-relaxed text-body">
-              Simbolisme boleh berubah. Tapi substansi — perawatan yang aman, halal, menghormati privasi, dan merayakan kecantikan asli — itu tidak pernah kami kompromikan, dan tidak akan pernah.
-            </p>
-          </Reveal>
+            {/* The name change as the section's centerpiece: the two brand
+                logos, before → after. The current logo is recolored white via a
+                filter so it reads on the teal plate. */}
+            <Reveal delay={80}>
+              <div className="mt-12 grid items-stretch gap-3 rounded-2xl border border-primary/10 bg-white p-4 shadow-[0_18px_54px_rgba(0,100,98,0.07)] sm:grid-cols-[1fr_auto_1fr] sm:gap-2 sm:p-6">
+                <figure className="flex flex-col rounded-xl border border-primary/10 bg-white px-6 py-7 sm:px-8">
+                  <figcaption className="text-[13px] font-medium uppercase tracking-[0.2em] text-muted">
+                    2017 · Nama Awal
+                  </figcaption>
+                  <div className="mt-6 flex flex-1 items-center justify-center">
+                    <Image
+                      src="/images/hayyu-logo-syari.jpg"
+                      alt="Logo awal Hayyu Syar'i Skin Clinic"
+                      width={400}
+                      height={400}
+                      className="h-auto w-full max-w-[230px] rounded-lg"
+                    />
+                  </div>
+                </figure>
+
+                <div className="flex items-center justify-center py-1 sm:px-1">
+                  <span
+                    className="rotate-90 text-[28px] text-gold sm:rotate-0"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </div>
+
+                <figure className="flex flex-col rounded-xl bg-primary px-6 py-7 sm:px-8">
+                  <figcaption className="text-[13px] font-medium uppercase tracking-[0.2em] text-white/70">
+                    Kini · Nama Sekarang
+                  </figcaption>
+                  <div className="mt-6 flex flex-1 items-center justify-center">
+                    <Image
+                      src="/images/hayyu-logo-hd.png"
+                      alt="Logo sekarang Hayyu Skin Clinic"
+                      width={440}
+                      height={295}
+                      className="h-auto w-full max-w-[230px] brightness-0 invert"
+                    />
+                  </div>
+                </figure>
+              </div>
+            </Reveal>
+
+            {/* Explanation, laid out as two readable columns. */}
+            <Reveal delay={120}>
+              <div className="mt-12 grid gap-x-12 gap-y-6 lg:grid-cols-2">
+                <div className="space-y-5 text-[17px] leading-relaxed text-body">
+                  <p>
+                    <strong>Hayyu Syar&apos;i Skin Clinic</strong> adalah nama awal yang mencerminkan akar nilai kami dengan jelas — klinik yang dibangun di atas prinsip kehalalan, privasi, dan kenyamanan wanita Muslim. Nama itu adalah keberanian untuk menjadi berbeda di industri yang belum banyak bicara soal ini.
+                  </p>
+                  <p>
+                    Seiring bertumbuh, kami menyadari sesuatu yang penting: nilai yang kami pegang — <em>rasa syukur atas fitrah wanita</em> — bukan nilai eksklusif. Ia adalah nilai universal yang seharusnya bisa dirasakan oleh semua wanita, tanpa memandang latar belakang mereka.
+                  </p>
+                </div>
+                <div className="space-y-5 text-[17px] leading-relaxed text-body lg:border-l lg:border-primary/10 lg:pl-12">
+                  <p>
+                    Menjadi <strong>Hayyu Skin Clinic</strong> bukan berarti melepas identitas awal. Justru sebaliknya — kami memperluas bahasa kami. Nilai yang selama ini kami pegang dengan kuat, kini kami bawa lebih jauh: bukan hanya sebagai ciri khas sebuah klinik, tapi sebagai warisan yang ingin kami ukir di industri kecantikan Indonesia.
+                  </p>
+                  <p>
+                    Simbolisme boleh berubah. Tapi substansi — perawatan yang berhati-hati, halal-aware, menghormati privasi, dan merayakan kecantikan asli — itu tidak pernah kami kompromikan.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         <Divider />
@@ -398,7 +465,7 @@ export default function BrandStoryPage() {
                         className="min-h-[260px]"
                       />
                       <div className="self-center">
-                        <p className="text-[15px] font-medium uppercase tracking-[0.2em] text-gold">
+                        <p className="text-[15px] font-medium uppercase tracking-[0.2em] text-primary">
                           {item.year}
                         </p>
                         <h3 className="mt-2 text-[clamp(24px,3vw,32px)] font-light leading-snug text-ink">
@@ -420,37 +487,51 @@ export default function BrandStoryPage() {
 
         <section id="nilai-tetap" className="scroll-mt-36 bg-white px-5 py-20 lg:py-28">
           <div className="mx-auto max-w-content lg:px-8 xl:px-0">
-            <Reveal className="max-w-prose">
-              <Eyebrow>Yang Tidak Berubah</Eyebrow>
-              <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,53px)]">
-                Empat Hal yang Selalu <span className="accent">Kami Jaga</span>
-              </h2>
-              <p className="mt-6 text-[18px] leading-relaxed text-body">
-                Di balik perubahan nama dan pertumbuhan cabang, ada hal-hal yang sejak hari pertama tidak pernah kami kompromikan.
-              </p>
+            <Reveal>
+              <div className="grid gap-x-12 gap-y-6 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <Eyebrow>Yang Tidak Berubah</Eyebrow>
+                  <h2 className="font-light leading-tight tracking-tight text-ink text-[clamp(31px,4vw,53px)]">
+                    Empat Hal yang Selalu <span className="accent">Kami Jaga</span>
+                  </h2>
+                </div>
+                <div className="lg:col-span-5 lg:pt-2">
+                  <p className="text-[18px] leading-relaxed text-body">
+                    Di balik perubahan nama dan pertumbuhan cabang, ada hal-hal yang sejak hari pertama tidak pernah kami kompromikan.
+                  </p>
+                </div>
+              </div>
             </Reveal>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {/* Principles as an editorial ledger: numbered, hairline-topped rows. */}
+            <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
               {values.map((value, index) => (
                 <Reveal key={value.title} delay={index * 70}>
-                  <article className="h-full rounded-lg border border-primary/10 bg-cream p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-primary-50">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white text-primary ring-1 ring-primary/10">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        aria-hidden="true"
-                      >
-                        {value.icon}
-                      </svg>
-                    </span>
-                    <h3 className="mt-6 text-[clamp(21px,2vw,24px)] font-normal text-ink">
-                      {value.title}
-                    </h3>
-                    <p className="mt-3 text-[16px] leading-relaxed text-body">
-                      {value.desc}
-                    </p>
+                  <article className="group flex h-full gap-5 border-t border-primary/15 pt-7">
+                    <div className="flex shrink-0 flex-col items-center gap-3">
+                      <span className="text-[14px] font-medium tabular-nums text-primary/50">
+                        {`0${index + 1}`}
+                      </span>
+                      <span className="flex h-12 w-12 items-center justify-center rounded-md bg-cream text-primary ring-1 ring-primary/10 transition-colors duration-300 group-hover:bg-primary group-hover:text-white group-hover:ring-primary">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          {value.icon}
+                        </svg>
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-[clamp(21px,2vw,24px)] font-normal text-ink">
+                        {value.title}
+                      </h3>
+                      <p className="mt-3 text-[16px] leading-relaxed text-body">
+                        {value.desc}
+                      </p>
+                    </div>
                   </article>
                 </Reveal>
               ))}
@@ -467,22 +548,33 @@ export default function BrandStoryPage() {
             className="pointer-events-none absolute bottom-0 left-0 w-full opacity-40"
             aria-hidden="true"
           />
-          <Reveal className="relative mx-auto max-w-prose text-center">
-            <Eyebrow light>Hayyu Skin Clinic</Eyebrow>
-            <h2 className="font-light leading-tight text-white text-[clamp(32px,calc(4vw_+_7px),54px)]">
-              Perjalanan Ini <span className="italic text-gold">Belum Selesai</span>
-            </h2>
-            <p className="mx-auto mt-7 max-w-2xl text-[18px] leading-relaxed text-white/84">
-              Dari satu klinik di Surabaya, menjadi puluhan cabang di seluruh Indonesia. Tapi yang kami kejar bukan angka — melainkan kepercayaan setiap wanita yang mempercayakan kulitnya kepada kami, dan legacy yang ingin kami wariskan: bahwa wanita Indonesia merawat diri bukan untuk mengubah siapa mereka, tapi karena mereka bersyukur atas siapa mereka.
-            </p>
-            <a
-              href={RESERVASI}
-              {...externalProjectLinkProps(RESERVASI)}
-              className="mt-9 inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-[16px] font-medium uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream"
-            >
-              Mulai Perjalanan Kulitmu
-            </a>
-          </Reveal>
+          <div className="relative mx-auto grid max-w-content items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 xl:px-0">
+            <Reveal>
+              <Eyebrow light>Hayyu Skin Clinic</Eyebrow>
+              <h2 className="font-light leading-tight text-white text-[clamp(32px,calc(4vw_+_7px),54px)]">
+                Perjalanan Ini <span className="italic text-gold">Belum Selesai</span>
+              </h2>
+              <p className="mt-7 max-w-2xl text-[18px] leading-relaxed text-white/84">
+                Dari satu klinik di Surabaya, menjadi puluhan cabang di seluruh Indonesia. Tapi yang kami kejar bukan angka — melainkan kepercayaan setiap wanita yang mempercayakan kulitnya kepada kami, dan legacy yang ingin kami wariskan: bahwa wanita Indonesia merawat diri bukan untuk mengubah siapa mereka, tapi karena mereka bersyukur atas siapa mereka.
+              </p>
+              <a
+                href={RESERVASI}
+                {...externalProjectLinkProps(RESERVASI)}
+                className="mt-9 inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-[16px] font-medium uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream"
+              >
+                Mulai Perjalanan Kulitmu
+              </a>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <StoryImage
+                src="/images/hero-konsultasi-kulit.png"
+                alt="Konsultasi di Hayyu Skin Clinic sebagai penutup perjalanan brand"
+                ratio="aspect-[4/5]"
+                className="mx-auto w-full max-w-md shadow-[0_28px_80px_rgba(0,0,0,0.35)] ring-white/15"
+              />
+            </Reveal>
+          </div>
         </section>
       </main>
 

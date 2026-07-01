@@ -5,12 +5,14 @@ export default function ImagePlaceholder({
   filename,
   className = "",
   ratio = "aspect-[4/3]",
+  priority = false,
 }: {
   alt: string;
   filename: string;
   className?: string;
   variant?: "light" | "dark";
   ratio?: string;
+  priority?: boolean;
 }) {
   return (
     <div
@@ -22,7 +24,7 @@ export default function ImagePlaceholder({
         fill
         sizes="(min-width: 1024px) 50vw, 100vw"
         className="object-cover"
-        priority={filename.startsWith("hero-")}
+        priority={priority || filename.startsWith("hero-")}
       />
     </div>
   );

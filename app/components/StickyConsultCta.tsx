@@ -40,21 +40,24 @@ export default function StickyConsultCta() {
   return (
     <aside
       aria-label="Reservasi konsultasi"
-      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-content rounded-2xl border border-white/30 bg-primary px-4 py-3 text-white shadow-2xl shadow-black/20 sm:left-auto sm:right-5 sm:mx-0 sm:max-w-sm"
+      className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-content rounded-xl border border-white/30 bg-primary px-3 py-2.5 text-white shadow-2xl shadow-black/20 sm:left-auto sm:right-5 sm:mx-0 sm:max-w-sm sm:rounded-2xl sm:px-4 sm:py-3"
     >
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2.5 sm:gap-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/80">
+          <p className="hidden text-[14px] font-medium uppercase tracking-[0.16em] text-white/80 sm:block">
             Konsultasi Hayyu
           </p>
-          <p className="mt-1 text-[17px] leading-snug text-white/90">
-            Mulai dari analisis kulit dan rekomendasi personal.
+          <p className="text-[14px] font-medium leading-snug text-white/90 sm:mt-1 sm:text-[17px] sm:font-normal">
+            <span className="sm:hidden">Konsultasi kulit personal</span>
+            <span className="hidden sm:inline">
+              Mulai dari analisis kulit dan rekomendasi personal.
+            </span>
           </p>
         </div>
         <a
           href={RESERVATION_URL}
           {...externalProjectLinkProps(RESERVATION_URL)}
-          className="shrink-0 rounded-md bg-white px-4 py-2 text-[14px] font-medium uppercase tracking-[0.14em] text-primary transition-colors hover:bg-cream"
+          className="shrink-0 rounded-md bg-white px-3 py-2 text-[12px] font-medium uppercase tracking-[0.12em] text-primary transition-colors hover:bg-cream sm:px-4 sm:text-[14px] sm:tracking-[0.14em]"
         >
           Reservasi
         </a>
